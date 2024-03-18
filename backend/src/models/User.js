@@ -9,6 +9,9 @@ const userSchema = new mongoose.Schema(
       max: 20,
       unique: true,
     },
+    avatar:{
+      type: String,
+    },
     email: {
       type: String,
       require: true,
@@ -20,10 +23,14 @@ const userSchema = new mongoose.Schema(
       require: true,
       min: 6,
     },
-    isAdmin: {
+    admin: {
       type: Boolean,
       default: false,
     },
+    hasFollow:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Author",
+    }]
   },
   { timestamps: true }
 );

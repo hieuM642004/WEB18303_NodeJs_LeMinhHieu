@@ -28,17 +28,24 @@ function Author() {
 	}, [id]);
 
 	const handleFollow = async () => {
-		setFollow(!follow);
 		try {
 			const user = localStorage.getItem('user');
 
 			const dataUsser = JSON.parse(user);
 			const userId = dataUsser[0];
 			if (userId) {
-				const response = await axios.post(`/user/${userId}`, {
-					hasFollow: id,
-				});
-				console.table(response);
+				if (follow) {
+					await axios.delete(`/user/${userId}`, {
+						data: {
+							hasFollow: id,
+						},
+					});
+				} else {
+					await axios.post(`/user/${userId}`, {
+						hasFollow: id,
+					});
+				}
+				setFollow(!follow);
 			}
 		} catch (error) {
 			console.log(error);

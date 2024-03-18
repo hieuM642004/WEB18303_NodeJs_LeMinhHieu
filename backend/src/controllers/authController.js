@@ -16,6 +16,7 @@ const authController = {
         username: req.body.username,
         email: req.body.email,
         password: hashed,
+        avatar:req.body.avatar
       });
 
       //Save user to DB

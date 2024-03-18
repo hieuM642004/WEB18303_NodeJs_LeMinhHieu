@@ -7,8 +7,10 @@ const {
 
 const router = require("express").Router();
 //GET ALL USERS
-router.get("/", verifyToken, userController.getAllUsers);
-
+router.get("/",userController.getAllUsers);
+router.get("/:id",userController.getAUsers); 
+router.post("/:id",userController.addFollow); 
+router.delete("/:id",userController.unFollow); 
 //DELETE USER
 router.delete("/:id", verifyTokenAndUserAuthorization, userController.deleteUser);
 
