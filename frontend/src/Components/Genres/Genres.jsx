@@ -26,18 +26,21 @@ function Genres() {
 
 	return (
 		<section>
-			
-
-
-            
-            <h2 className="flex flex-row flex-nowrap items-center my-8">
-                <span className="flex-grow block border-t border-black" aria-hidden="true" role="presentation"></span>
-                <span className="flex-none block mx-4   px-4 py-2.5 text-xs leading-none font-medium uppercase bg-black text-white">
-                   {genre.name}
-                </span>
-                <span className="flex-grow block border-t border-black" aria-hidden="true" role="presentation"></span>
-            </h2>
-        
+			<h2 className="flex flex-row flex-nowrap items-center my-8">
+				<span
+					className="flex-grow block border-t border-black"
+					aria-hidden="true"
+					role="presentation"
+				></span>
+				<span className="flex-none block mx-4   px-4 py-2.5 text-xs leading-none font-medium uppercase bg-black text-white">
+					{genre.name}
+				</span>
+				<span
+					className="flex-grow block border-t border-black"
+					aria-hidden="true"
+					role="presentation"
+				></span>
+			</h2>
 
 			<div className="grid grid-cols-3 gap-4">
 				{books.map((book) => (
@@ -53,9 +56,18 @@ function Genres() {
 								<h2 className="mb-6 block font-sans text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
 									{book.name}
 								</h2>
-								<h5 className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-400"  dangerouslySetInnerHTML={{ __html: book.content.length>100? book.content.substring(0, 100) + '...' : book.content }}>
-								
-								</h5>
+								<h5
+									className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-400"
+									dangerouslySetInnerHTML={{
+										__html:
+											book.content.length > 100
+												? book.content.substring(
+														0,
+														100,
+												  ) + '...'
+												: book.content,
+									}}
+								></h5>
 								{/* <img alt={book.author} src={book.image} className="relative inline-block h-[74px] w-[74px] !rounded-full border-2 border-white object-cover object-center" /> */}
 							</div>
 						</Link>

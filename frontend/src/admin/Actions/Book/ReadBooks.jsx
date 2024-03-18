@@ -54,12 +54,15 @@ function ReadBooks() {
 		if (!selectedBook) return;
 
 		try {
-			await axios.delete(`/book/${selectedBook._id}`);
-			toast.success('Xóa thành công');
+		await axios.delete(`/book/${selectedBook._id}`);
+			
+
+				toast.success('Xóa thành công');
+			
 
 			handleCloseConfirmation();
 		} catch (error) {
-			console.error('Lỗi khi xóa sách:', error);
+			console.error('Error delete:', error);
 		}
 	};
 	return (
@@ -134,7 +137,7 @@ function ReadBooks() {
 										{index + 1}
 									</p>
 								</td>
-							
+
 								<td className="p-4 border-b border-blue-gray-50">
 									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
 										{book.name}
@@ -142,21 +145,23 @@ function ReadBooks() {
 								</td>
 								<td className="p-4 border-b border-blue-gray-50">
 									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-									{book.images &&
-									book.images.map((imageUrl, imageIndex) => (
-										<div key={imageIndex}>
-											<img
-											className='w-20 h-20'
-												src={imageUrl}
-												alt={`book-image-${imageIndex}`}
-											/>
-										</div>
-									))}
+										{book.images &&
+											book.images.map(
+												(imageUrl, imageIndex) => (
+													<div key={imageIndex}>
+														<img
+															className="w-20 h-20"
+															src={imageUrl}
+															alt={`book-image-${imageIndex}`}
+														/>
+													</div>
+												),
+											)}
 									</p>
 								</td>
 								<td className="p-4 border-b border-blue-gray-50">
 									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-										{book.premium? 'Trả phí':'Miễn phí'}
+										{book.premium ? 'Trả phí' : 'Miễn phí'}
 									</p>
 								</td>
 								<td className="p-4 border-b border-blue-gray-50">
