@@ -8,7 +8,7 @@
     "https://drive.google.com/thumbnail?id=1hrGbRPmqnzQ2IiMEykodU62SrqE1LgoA"
   ],
   "publishedDate": "2024-03-23",
-  "premium": false,
+  "premium": true,
   "genres": [
     {
       "$oid": "65eb25c706b9bb1991e6fe6a"

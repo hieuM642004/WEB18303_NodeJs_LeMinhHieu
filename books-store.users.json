@@ -10,7 +10,7 @@
     "$date": "2024-03-02T13:26:24.406Z"
   },
   "updatedAt": {
-    "$date": "2024-03-17T13:16:33.690Z"
+    "$date": "2024-03-18T07:39:26.896Z"
   },
   "__v": 0,
   "posts": [
@@ -18,14 +18,7 @@
       "$oid": "65f461e9cb5a8705e01ddfe8"
     }
   ],
-  "hasFollow": [
-    {
-      "$oid": "65eace9539002a5860db7a8d"
-    },
-    {
-      "$oid": "65eace9539002a5860db7a8d"
-    }
-  ]
+  "hasFollow": []
 },
 {
   "_id": {
@@ -158,35 +151,19 @@
 },
 {
   "_id": {
-    "$oid": "65ef109903e756d2cc24b310"
+    "$oid": "65f7f6c2b6b22a07656d48fc"
   },
-  "username": "studyeverydaydfdf",
-  "email": "jk@gmail.com",
-  "password": "$2b$10$yLbWmWkTLOvidkh/LkgVtuByVcBmJ5REBEloMnVwYkVx2C0B8cAqq",
-  "posts": [],
+  "username": "twopilldffdfdfdfdff",
+  "avatar": "img.png",
+  "email": "pillddfdfdf@gmail.com",
+  "password": "$2b$10$TL7tN4OQe6/.szZfg6epROlf8a/7F4jSFs0XTjLbSceUFRYwXEdvS",
   "admin": false,
+  "hasFollow": [],
   "createdAt": {
-    "$date": "2024-03-11T14:09:29.189Z"
+    "$date": "2024-03-18T08:09:38.812Z"
   },
   "updatedAt": {
-    "$date": "2024-03-11T14:09:29.189Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65ef112d03e756d2cc24b312"
-  },
-  "username": "studyeverydaydd",
-  "email": "hieulmjk@gmail.com",
-  "password": "$2b$10$bhhu3Tqa2RdwsJGAXY/KiOSQdPPm24s4kgxALK0DvvylIiFChJF9u",
-  "posts": [],
-  "admin": false,
-  "createdAt": {
-    "$date": "2024-03-11T14:11:57.505Z"
-  },
-  "updatedAt": {
-    "$date": "2024-03-11T14:11:57.505Z"
+    "$date": "2024-03-18T08:09:38.812Z"
   },
   "__v": 0
 }]
