@@ -1,0 +1,51 @@
+[{
+  "_id": {
+    "$oid": "65de02ed0e3312a12a6fd2f0"
+  },
+  "name": "IELTS Foundation Essentials",
+  "description": "Python là một ngôn ngữ lập trình bậc cao cho các mục đích lập trình đa năng, do Guido van Rossum tạo ra và lần đầu ra mắt vào năm 1991. Python được thiết kế với ưu điểm mạnh là dễ đọc, dễ học và dễ nhớ.",
+  "image": "https://www.ieltsasia.org/vn/sites/www.ieltsasia.org.vn/files/ielts-registration-39516.jpg",
+  "createdAt": {
+    "$date": "2024-02-27T15:42:37.270Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-07T12:52:19.958Z"
+  },
+  "slug": "ielts-foundation-essentials",
+  "__v": 0,
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "65de08bd7895d13495aa81c0"
+  },
+  "name": "Firebase",
+  "description": "Được dịch từ tiếng Anh-Firebase, Inc. là một tập hợp các nền tảng phát triển ứng dụng và dịch vụ điện toán đám mây phụ trợ do Google cung cấp. Nó lưu trữ cơ sở dữ liệu, dịch vụ, xác thực và tích hợp cho nhiều ứng dụng, bao gồm Android, iOS, JavaScript, Node.js, Java, Unity, PHP và C++.",
+  "image": "https://images.fpt.shop/unsafe/filters:quality(90)/fptshop.com.vn/uploads/images/tin-tuc/159218/Originals/Firebase-la-gi-5.jpg",
+  "createdAt": {
+    "$date": "2024-02-27T16:07:25.910Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-07T12:49:43.239Z"
+  },
+  "slug": "cafe",
+  "__v": 0,
+  "deleted": false
+},
+{
+  "_id": {
+    "$oid": "65e9b8780c822f85a0addfb9"
+  },
+  "name": "Python nâng cao",
+  "description": "Python là một ngôn ngữ lập trình bậc cao cho các mục đích lập trình đa năng, do Guido van Rossum tạo ra và lần đầu ra mắt vào năm 1991. Python được thiết kế với ưu điểm mạnh là dễ đọc, dễ học và dễ nhớ.",
+  "image": "https://vtiacademy.edu.vn/upload/images/python-co-ban-1(1).jpg",
+  "deleted": false,
+  "createdAt": {
+    "$date": "2024-03-07T12:52:08.563Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-07T12:52:08.563Z"
+  },
+  "slug": "python-nang-cao",
+  "__v": 0
+}]
