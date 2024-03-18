@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "65ee657090e2c7a55908aab0"
+  },
+  "title": "Sunnuy",
+  "content": "Công nghệ không chỉ là một phần không thể thiếu trong cuộc sống hàng ngày của chúng ta mà còn là một động lực lớn đằng sau sự phát triển của xã hội hiện đại. Từ việc kết nối mọi người trên toàn thế giới đến việc thay đổi cách chúng ta làm việc và giải trí, công nghệ đã mang lại những tiện ích không ngờ và tác động sâu rộng đến mọi lĩnh vực của cuộc sống.",
+  "userId": {
+    "$oid": "65e476bd6a21715e4964d47b"
+  },
+  "createdAt": {
+    "$date": "2024-03-11T01:59:12.739Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-11T02:04:40.320Z"
+  },
+  "__v": 0,
+  "image": "https://redpixelthemes.com/blog/images/6eb37884-060c-4327-b1aa-43c82291872b.webp"
+},
+{
+  "_id": {
+    "$oid": "65f461e9cb5a8705e01ddfe8"
+  },
+  "title": "Cloundy",
+  "content": "Một trong những ảnh hưởng chính của công nghệ là sự thay đổi trong cách chúng ta giao tiếp và kết nối với nhau. Internet và các nền tảng truyền thông xã hội đã mở ra cánh cửa cho việc trao đổi thông tin và ý kiến một cách nhanh chóng và toàn cầu. Nhờ vào điều này, chúng ta có thể kết nối với người dân ở xa, chia sẻ những ý tưởng và tin tức, và tham gia vào các diễn đàn và cộng đồng trực tuyến.",
+  "userId": {
+    "$oid": "65e32900526e1fadbdc3b96b"
+  },
+  "createdAt": {
+    "$date": "2024-03-15T14:57:45.079Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-15T14:57:45.079Z"
+  },
+  "__v": 0
+}]

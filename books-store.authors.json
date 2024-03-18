@@ -1,0 +1,169 @@
+[{
+  "_id": {
+    "$oid": "65eace9539002a5860db7a8d"
+  },
+  "name": "Minh Hieu",
+  "year": 2015,
+  "books": [
+    {
+      "$oid": "65ebbfaaabc243f58cb81ab3"
+    },
+    {
+      "$oid": "65f11b2b31125e05d9a4df4a"
+    },
+    {
+      "$oid": "65f11b5131125e05d9a4df4f"
+    },
+    {
+      "$oid": "65f1574033256b32c3df45a7"
+    },
+    {
+      "$oid": "65f15a99e5ded80e18c9ac8d"
+    },
+    {
+      "$oid": "65f15b35d478f6175370c6fc"
+    },
+    {
+      "$oid": "65f15ec06a1bdb40b53063ae"
+    },
+    {
+      "$oid": "65f162609773568651387cf6"
+    },
+    {
+      "$oid": "65f16741c98367cb8a9e1c70"
+    },
+    {
+      "$oid": "65f16a2c842fa42313114c07"
+    },
+    {
+      "$oid": "65f16c37850e99ec84fbc50e"
+    },
+    {
+      "$oid": "65f16d7c485702eba642aa1f"
+    },
+    {
+      "$oid": "65f19330c5b12b635bd597b6"
+    },
+    {
+      "$oid": "65f1b7ddca60dd1d99ff62ac"
+    },
+    {
+      "$oid": "65f1badfcaa5786a35a76c63"
+    },
+    {
+      "$oid": "65f1bb22caa5786a35a76c6c"
+    },
+    {
+      "$oid": "65f1c3eb8301e3ab8f7370e7"
+    },
+    {
+      "$oid": "65f269b198c1692e23a2def7"
+    },
+    {
+      "$oid": "65f2a433de51c565362fe407"
+    },
+    {
+      "$oid": "65f2b34dde51c565362fe45f"
+    },
+    {
+      "$oid": "65f2b58c5f2effc94b1b6877"
+    },
+    {
+      "$oid": "65f2f91f7518de353398518b"
+    },
+    {
+      "$oid": "65f2fa2f7e3d19147ed343bc"
+    },
+    {
+      "$oid": "65f2fc5516fc58f740fa30a4"
+    },
+    {
+      "$oid": "65f305da7c71755aa19804c2"
+    },
+    {
+      "$oid": "65f30946ebabc812a41d53b8"
+    },
+    {
+      "$oid": "65f30bef69983074ebed4fd2"
+    },
+    {
+      "$oid": "65f3152f69983074ebed4fe3"
+    },
+    {
+      "$oid": "65f317157f9cca61fb95ccae"
+    },
+    {
+      "$oid": "65f31d4e728f5016fa30a321"
+    },
+    {
+      "$oid": "65f64a32197347f8e22a4e98"
+    },
+    {
+      "$oid": "65f64fb118e9a4c101b02dbd"
+    }
+  ],
+  "__v": 0,
+  "description": "Tô Hoài là một nhà văn Việt Nam. Một số tác phẩm đề tài thiếu nhi của ông được dịch ra ngoại ngữ. Wikipedia\nNgày/nơi sinh: 27 tháng 9, 1920, Kim Bài\nNgày mất: 6 tháng 7, 2014, Bệnh viện Hữu Nghị Việt Xô,"
+},
+{
+  "_id": {
+    "$oid": "65eacea039002a5860db7a8f"
+  },
+  "name": "Alex",
+  "year": 2154,
+  "books": [
+    {
+      "$oid": "65ebd7f4abc243f58cb81c11"
+    },
+    {
+      "$oid": "65f1166d31125e05d9a4df08"
+    },
+    {
+      "$oid": "65f11dd531125e05d9a4dfa0"
+    },
+    {
+      "$oid": "65f14df1945188b2497cc5c1"
+    },
+    {
+      "$oid": "65f155d033256b32c3df45a1"
+    },
+    {
+      "$oid": "65f1582777782e2bfc6e91f9"
+    },
+    {
+      "$oid": "65f159f0df157db936306ee4"
+    },
+    {
+      "$oid": "65f166a94012f8b16fe8eaa8"
+    },
+    {
+      "$oid": "65f16cebe3a13a1c21df7750"
+    },
+    {
+      "$oid": "65f19e53dcc1e91988640b8a"
+    },
+    {
+      "$oid": "65f1acddca60dd1d99ff6259"
+    },
+    {
+      "$oid": "65f1ba1483bfbdbb9c48caf7"
+    },
+    {
+      "$oid": "65f269c098c1692e23a2defb"
+    },
+    {
+      "$oid": "65f2f251687666442f2f4f2b"
+    },
+    {
+      "$oid": "65f2f48bb43eac76a2b0afb2"
+    },
+    {
+      "$oid": "65f2f73f7518de3533985185"
+    },
+    {
+      "$oid": "65f64cf5197347f8e22a4f1f"
+    }
+  ],
+  "__v": 0,
+  "description": "Nam Cao (nguyên danh Trần Hữu Tri, thánh danh Giuse[1], 29 tháng 10, năm 1915 hoặc 1917 – 30 tháng 11 năm 1951[2]) là một nhà văn, nhà thơ, nhà báo và cũng là một chiến sĩ, liệt sỹ người Việt Nam. Ông là nhà văn hiện thực lớn (trước Cách mạng Tháng Tám), một nhà báo kháng chiến (sau Cách mạng), một trong những nhà văn tiêu biểu nhất thế kỷ 20. Nam Cao có nhiều đóng góp quan trọng đối với việc hoàn thiện phong cách truyện ngắn và tiểu thuyết Việt Nam ở nửa đầu thế kỷ 20."
+}]

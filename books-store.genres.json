@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "65eb107279b5c66016749548"
+  },
+  "name": "Kinh tế",
+  "image": null,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eb25c706b9bb1991e6fe6a"
+  },
+  "name": "Xã hội",
+  "image": null,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f64e39197347f8e22a4f37"
+  },
+  "name": "Giáo dục",
+  "image": "https://t3.ftcdn.net/jpg/04/90/51/38/360_F_490513853_kAVSEYFTKn4FIi7mm63yIiXSVRxj10NH.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f64f0518e9a4c101b02d98"
+  },
+  "name": "Truyện tranh",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f66cc5c70935f186181a0c"
+  },
+  "name": "SSSS",
+  "image": "https://t3.ftcdn.net/jpg/04/90/51/38/360_F_490513853_kAVSEYFTKn4FIi7mm63yIiXSVRxj10NH.jpg",
+  "createdAt": {
+    "$date": "2024-03-17T04:08:37.106Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-17T04:08:37.106Z"
+  },
+  "__v": 0
+}]
