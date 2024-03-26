@@ -13,9 +13,11 @@ function FormBook() {
 	const [authors, setAuthors] = useState([]);
 	const [selectedGenres, setSelectedGenres] = useState([]);
 	const [imageFile, setImageFile] = useState(null);
+	const [pdfFile, setPdfFile] = useState(null);
+	const [currentImageUrl, setCurrentImageUrl] = useState('');
 	const { id } = useParams();
 	const isEditForm = Boolean(id);
-	const navigate=useNavigate();
+	const navigate = useNavigate();
 	const fetchData = async () => {
 		try {
 			const [genresResponse, authorsResponse] = await Promise.all([
@@ -39,6 +41,7 @@ function FormBook() {
 				});
 
 				setSelectedGenres(bookData.genres);
+				setCurrentImageUrl(bookData.images);
 			}
 		} catch (error) {
 			console.error('Error fetching data:', error);
@@ -85,8 +88,9 @@ function FormBook() {
 					genres: selectedGenres,
 					author: values.author,
 					image: imageFile,
+					pdfFile: pdfFile,
 				};
-
+				console.log(imageFile);
 				let response;
 				if (isEditForm) {
 					response = await axios.put(`/book/${id}`, requestData);
@@ -103,7 +107,7 @@ function FormBook() {
 						? 'Sách đã được cập nhật thành công'
 						: 'Sách đã được thêm thành công';
 					toast.success(message);
-					navigate('/admin/books')
+					navigate('/admin/books');
 				} else {
 					toast.error('Thêm không thành công.');
 				}
@@ -116,6 +120,10 @@ function FormBook() {
 
 	const handleImageChange = (e) => {
 		setImageFile(e.target.files[0]);
+	};
+	const handlePdfFileChange = (e) => {
+		const file = e.target.files[0];
+		setPdfFile(file);
 	};
 
 	return (
@@ -131,7 +139,23 @@ function FormBook() {
 					encType="multipart/form-data"
 				>
 					<div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
-						
+						<div className="mb-4">
+							<label
+								htmlFor="pdfFile"
+								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+							>
+								File PDF
+							</label>
+							<input
+								type="file"
+								id="pdfFile"
+								name="pdfFile"
+								accept=".pdf"
+								onChange={handlePdfFileChange}
+								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+							/>
+						</div>
+
 						<div className="sm:col-span-2">
 							<label
 								htmlFor="name"
@@ -171,6 +195,35 @@ function FormBook() {
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 							/>
 						</div>
+						<div className='flex '>
+							{imageFile && (
+							<div className="mb-4 mr-1">
+								<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+									Xem trước ảnh
+								</label>
+								<img
+									src={URL.createObjectURL(imageFile)}
+									alt="Preview"
+									className="w-52 h-52 rounded-lg"
+								/>
+							</div>
+						)}
+						<div>
+							{isEditForm && currentImageUrl && (
+								<div className="mb-4">
+									<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+										Ảnh hiện tại
+									</label>
+									<img
+										src={currentImageUrl}
+										alt="Current Image"
+										className="w-52 h-52 rounded-lg"
+									/>
+								</div>
+							)}
+						</div>
+						</div>
+						
 						<div className="w-full">
 							<label
 								htmlFor="publishedDate"

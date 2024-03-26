@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ReactQuill from 'react-quill';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import 'react-quill/dist/quill.snow.css';
@@ -10,7 +9,6 @@ import { useParams } from 'react-router-dom';
 
 function FormGenres() {
 	const [genres, setGenres] = useState([]);
-	const [imageFile, setImageFile] = useState(null);
 	const { id } = useParams();
 	const isEditForm = Boolean(id);
 	const fetchData = async () => {
@@ -56,7 +54,6 @@ function FormGenres() {
 			try {
 				const requestData = {
 					name: values.name,
-					// image: imageFile,
 					
 				};
 
@@ -81,10 +78,7 @@ function FormGenres() {
 			setSubmitting(false);
 		},
 	});
-    const handleImageChange = (e) => {
-		setImageFile(e.target.files[0]);
-	};
-
+ 
 	return (
 		<section className="bg-white dark:bg-gray-900">
 			<div className="max-w-2xl px-4 py-4 mx-auto lg:py-4">
@@ -99,22 +93,7 @@ function FormGenres() {
 				>
 					
 					<div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
-						<div className="mb-4">
-							<label
-								htmlFor="image"
-								className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-							>
-								Ảnh
-							</label>
-							<input
-								type="file"
-								id="image"
-								name="image"
-								accept="image/*"
-								onChange={handleImageChange}
-								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-							/>
-						</div>
+				
                         <div className="sm:col-span-2">
 							<label
 								htmlFor="name"

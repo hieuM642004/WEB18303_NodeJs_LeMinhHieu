@@ -76,11 +76,6 @@ function ReadGenres() {
 						
 							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
 								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-									Ảnh
-								</p>
-							</th>
-							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
 									Ngày tạo
 								</p>
 							</th>
@@ -111,11 +106,7 @@ function ReadGenres() {
                                     {genre && genre.name}
 									</p>
 								</td>
-								<td className="p-4 border-b border-blue-gray-50">
-									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                    <img src={genre && genre.image} className='w-12' alt="img genres" />
-									</p>
-								</td>
+								
 								<td className="p-4 border-b border-blue-gray-50">
 									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
 										

@@ -23,7 +23,7 @@ const Login = () => {
 
       if (response.status === 200) {
         const data = response.data;
-        localStorage.setItem('user', JSON.stringify([data._id,data.username, data.email]));
+        localStorage.setItem('user', JSON.stringify([data._id,data.username,data.avatar, data.email]));
         document.cookie = `token=${data.accessToken};max-age=${data.expiresIn};path=/`;
        if(data.admin){
         navigate('/admin/dashboard');

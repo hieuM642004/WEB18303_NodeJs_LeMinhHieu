@@ -1,7 +1,7 @@
 .banner {
     background: url('https://file.hstatic.net/200000346773/file/2_9bfc96ae59ee4702b82f82b12ee2e4c9.png');
-    background-size: cover; /* Đảm bảo rằng ảnh sẽ che kín phần nền của banner */
-    background-repeat: no-repeat; /* Ngăn ảnh lặp lại */
+    background-size: cover; 
+    background-repeat: no-repeat;
     background-position: center; 
-    height: 300px;/* Căn giữa ảnh trong banner */
+    height: 300px;
 }

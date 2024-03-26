@@ -7,13 +7,14 @@ import HomePage from "../Components/Home/HomePage"
 import Login from "../Components/Login/Login"
 import DetailPosts from "../Components/Posts/DetailPost"
 import Posts from "../Components/Posts/Posts"
+import Profile from "../Components/Profile/Profile"
 import Register from "../Components/Register/Register";
 import PricingCard from "../Service/PricingCard/PricingCard"
 import FormBook from "../admin/Actions/Book/FormBook"
 import ReadBooks from "../admin/Actions/Book/ReadBooks"
 import FormGenres from "../admin/Actions/Genres/FormGenres"
 import ReadGenres from "../admin/Actions/Genres/ReadGenres"
-// import FormUser from "../admin/Actions/User/FormUser"
+import FormUser from "../admin/Actions/User/FormUser"
 import ReadUsers from "../admin/Actions/User/ReadUser"
 //Admin routes
 import Dashboard from "../admin/Components/Dashboard/Dashboard"
@@ -22,6 +23,7 @@ const publicRoutes=[
     {path:'/',component:HomePage},
     {path:'/login',component:Login},
     {path:'/register',component:Register},
+    {path:'/user/:id',component:Profile},
     {path:'/contact',component:Contact},
     {path:'/book/:id',component:DetailBook},
     {path:'/author/:id',component:Author},
@@ -41,8 +43,8 @@ const adminRoutes=[
 {path:'/admin/genres/add-genre',component:FormGenres},
 {path:'/admin/genres/edit-genre/:id',component:FormGenres},
 {path:'/admin/user',component:ReadUsers},
-// {path:'/admin/user/add-user',component:FormUser},
-// {path:'/admin/user/edit-user/:id',component:FormUser},
+{path:'/admin/user/add-user',component:FormUser},
+{path:'/admin/user/edit-user/:id',component:FormUser},
 
 ]
 

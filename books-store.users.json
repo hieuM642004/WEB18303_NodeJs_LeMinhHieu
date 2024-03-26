@@ -10,7 +10,7 @@
     "$date": "2024-03-02T13:26:24.406Z"
   },
   "updatedAt": {
-    "$date": "2024-03-18T07:39:26.896Z"
+    "$date": "2024-03-25T04:08:58.683Z"
   },
   "__v": 0,
   "posts": [
@@ -18,7 +18,14 @@
       "$oid": "65f461e9cb5a8705e01ddfe8"
     }
   ],
-  "hasFollow": []
+  "hasFollow": [
+    {
+      "$oid": "65eacea039002a5860db7a8f"
+    },
+    {
+      "$oid": "65eace9539002a5860db7a8d"
+    }
+  ]
 },
 {
   "_id": {
@@ -164,6 +171,24 @@
   },
   "updatedAt": {
     "$date": "2024-03-18T08:09:38.812Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fba1b68c0d5e0e41365bc7"
+  },
+  "username": "dfdffsds",
+  "avatar": "https://drive.google.com/thumbnail?id=1Ofl3EH2WJvutrngQ9LzIrd6TYHJhxtHO",
+  "email": "sdsdsd@gmail.com",
+  "password": "$2b$10$/k3MXk/XKInaSsEYs2yUNe22Tu/exmarpdHJqB9shAdWg.qfOMlau",
+  "admin": false,
+  "hasFollow": [],
+  "createdAt": {
+    "$date": "2024-03-21T02:55:50.246Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-21T02:55:50.246Z"
   },
   "__v": 0
 }]

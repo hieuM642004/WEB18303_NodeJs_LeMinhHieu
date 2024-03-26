@@ -1,0 +1,63 @@
+[{
+  "_id": {
+    "$oid": "65fa39a9b05fb2e604d637d3"
+  },
+  "userId": {
+    "$oid": "65e32900526e1fadbdc3b96b"
+  },
+  "money": 0,
+  "status": false,
+  "package": 1,
+  "expiryDate": {
+    "$date": "2024-04-20T01:19:37.011Z"
+  },
+  "createdAt": {
+    "$date": "2024-03-20T01:19:37.043Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-20T01:19:37.043Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fbec2250a0fd02efad1083"
+  },
+  "userId": {
+    "$oid": "65e32900526e1fadbdc3b96b"
+  },
+  "money": 150000,
+  "status": false,
+  "package": 3,
+  "expiryDate": {
+    "$date": "2024-06-21T08:13:22.820Z"
+  },
+  "createdAt": {
+    "$date": "2024-03-21T08:13:22.826Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-21T08:13:22.826Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fbfc0b741f6a492027304e"
+  },
+  "userId": {
+    "$oid": "65e32900526e1fadbdc3b96b"
+  },
+  "money": 500000,
+  "status": false,
+  "package": 12,
+  "expiryDate": {
+    "$date": "2025-03-21T09:21:15.701Z"
+  },
+  "createdAt": {
+    "$date": "2024-03-21T09:21:15.704Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-21T09:21:15.704Z"
+  },
+  "__v": 0
+}]

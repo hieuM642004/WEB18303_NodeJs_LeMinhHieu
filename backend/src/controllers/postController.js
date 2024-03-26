@@ -1,60 +1,50 @@
+const postsService = require("../services/posts");
 
-const multer = require("multer");
-const Posts = require("../models/Posts");
-
-
-const postsController = {
+class postsController {
   //ADD POSTS
-  addPosts: async (req, res) => {
+  static async addPosts(req, res) {
     try {
-      const newPosts = new Posts(req.body);
-      const savedPosts = await newPosts.save();
-      res.status(200).json(savedPosts);
-    } catch (err) {
-      res.status(500).json(err); //HTTP REQUEST CODE
+      await postsService.addPosts(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //GET ALL POSTSS
-  getAllPostss: async (req, res) => {
+  //GET ALL POSTS
+  static async getAllPostss(req, res) {
     try {
-      const postss = await Posts.find();
-      res.status(200).json(postss);
-    } catch (err) {
-      res.status(500).json(err);
+      await postsService.getAllPostss(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //GET AN POSTS
-  getAnPosts: async (req, res) => {
+  //GET AN POST
+  static async getAnPosts(req, res) {
     try {
-      const posts = await Posts.findById(req.params.id);
-      res.status(200).json(posts);
-    } catch (err) {
-      res.status(500).json(err);
+      await postsService.getAnPosts(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
   //UPDATE POSTS
-  updatePosts: async (req, res) => {
+  static async updatePosts(req, res) {
     try {
-      const posts = await Posts.findById(req.params.id);
-      await posts.updateOne({ $set: req.body });
-      res.status(200).json("Updated successfully!");
-    } catch (err) {
-      res.status(500).json(err);
+      await postsService.updatePosts(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
   //DELETE POSTS
-  deletePosts: async (req, res) => {
+  static async deletePosts(req, res) {
     try {
-      await Posts.findByIdAndDelete(req.params.id);
-      res.status(200).json("Deleted successfully!");
-    } catch (err) {
-      res.status(500).json(err);
+      await postsService.deletePosts(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
-};
+  }
+}
 
 module.exports = postsController;

@@ -3,19 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../../../assets/img/open-book.png';
-
 import SearchBooks from './Search/Search';
 import handleLogout from '../../../Logout/Logout';
+import Notification from './Notification/Notification';
 
 function Navbar() {
-
 	const [user, setUser] = useState();
 	useEffect(() => {
 		const userData = localStorage.getItem('user');
 		if (userData) setUser(JSON.parse(userData));
 	}, []);
-
-
 
 	return (
 		<nav className="bg-white border-gray-200 dark:bg-gray-900 shadow-md ">
@@ -30,7 +27,8 @@ function Navbar() {
 					</span>
 				</Link>
 				<div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse ">
-				<SearchBooks/>
+				{/* <Notification/> */}
+					<SearchBooks />
 					{user ? (
 						<>
 							<button
@@ -44,7 +42,10 @@ function Navbar() {
 								<span className="sr-only">Open user menu</span>
 								<img
 									className="w-8 h-8 rounded-full"
-									src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
+									src={
+										user[2] ||
+										'https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg'
+									}
 									alt="user photo"
 								/>
 							</button>
@@ -53,12 +54,12 @@ function Navbar() {
 								className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
 								id="user-dropdown"
 							>
-								<div className="px-4 py-3">
+								<div className="px-4 py-3 ">
 									<span className="block text-sm text-gray-900 dark:text-white">
 										{user[1]}
 									</span>
 									<span className="block text-sm text-gray-500 truncate dark:text-gray-400">
-										{user[2]}
+										{user[3]}
 									</span>
 								</div>
 								<ul
@@ -66,14 +67,13 @@ function Navbar() {
 									aria-labelledby="user-menu-button"
 								>
 									<li>
-										<a
-											href="#"
-											className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-										>
-											Dashboard
-										</a>
+										<Link to={`/user/${user[0]}`}>
+											<a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+												Thông tin
+											</a>
+										</Link>
 									</li>
-									
+
 									<li>
 										<button
 											className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"

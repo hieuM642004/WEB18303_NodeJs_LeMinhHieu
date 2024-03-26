@@ -1,59 +1,46 @@
-const { Author,Book } = require("../models/book");
+const authorService = require("../services/author");
 
 
-const authorController = {
-  //ADD AUTHOR
-  addAuthor: async (req, res) => {
+class AuthorController {
+  static async addAuthor(req, res) {
     try {
-      const newAuthor = new Author(req.body);
-      const savedAuthor = await newAuthor.save();
-      res.status(200).json(savedAuthor);
-    } catch (err) {
-      res.status(500).json(err); //HTTP REQUEST CODE
+      await authorService.addAuthor(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //GET ALL AUTHORS
-  getAllAuthors: async (req, res) => {
+  static async getAllAuthors(req, res) {
     try {
-      const authors = await Author.find();
-      res.status(200).json(authors);
-    } catch (err) {
-      res.status(500).json(err);
+      await authorService.getAllAuthors(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //GET AN AUTHOR
-  getAnAuthor: async (req, res) => {
+  static async getAnAuthor(req, res) {
     try {
-      const author = await Author.findById(req.params.id).populate("books");
-      res.status(200).json(author);
-    } catch (err) {
-      res.status(500).json(err);
+      await authorService.getAnAuthor(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //UPDATE AUTHOR
-  updateAuthor: async (req, res) => {
+  static async updateAuthor(req, res) {
     try {
-      const author = await Author.findById(req.params.id);
-      await author.updateOne({ $set: req.body });
-      res.status(200).json("Updated successfully!");
-    } catch (err) {
-      res.status(500).json(err);
+      await authorService.updateAuthor(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //DELETE AUTHOR
-  deleteAuthor: async (req, res) => {
+  static async deleteAuthor(req, res) {
     try {
-      await Book.updateMany({ author: req.params.id }, { author: null });
-      await Author.findByIdAndDelete(req.params.id);
-      res.status(200).json("Deleted successfully!");
-    } catch (err) {
-      res.status(500).json(err);
+      await authorService.deleteAuthor(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
-};
+  }
+}
 
-module.exports = authorController;
+module.exports = AuthorController;

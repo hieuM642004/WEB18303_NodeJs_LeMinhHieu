@@ -1,54 +1,52 @@
-const User = require("../models/User");
+const userService = require("../services/user");
 
-const userController = {
-  //GET ALL USER
-  getAllUsers: async (req, res) => {
-    try {
-      const user = await User.find();
-      res.status(200).json(user);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  },
-  //GET A USER
-  getAUsers: async (req, res) => {
-    try {
-      const user = await User.findById(req.params.id);
-      res.status(200).json(user);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  },
 
-  //DELETE A USER
-  deleteUser: async (req, res) => {
+
+class userController {
+  //GET ALL USERS
+  static async getAllUsers(req, res) {
     try {
-      await User.findByIdAndDelete(req.params.id);
-      res.status(200).json("User deleted");
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  },
-  //add hasFollow
-  addFollow:async(req,res)=>{
-    try {
-      const idUser=req.params.id;
-      await User.findByIdAndUpdate(idUser,{$push:{hasFollow:req.body.hasFollow}})
-      res.status(200).json("User has follow");
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  },
-  //remove hasFollow
-  unFollow:async(req,res)=>{
-    try {
-      const idUser=req.params.id;
-      await User.findByIdAndUpdate(idUser,{$pull:{hasFollow:req.body.hasFollow}})
-      res.status(200).json("User has unfollow");
-    } catch (err) {
-      res.status(500).json(err);
+      await userService.getAllUsers(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   }
-};
+
+  //GET A USER
+  static async getAUsers(req, res) {
+    try {
+      await userService.getAUsers(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  //DELETE A USER
+  static async deleteUser(req, res) {
+    try {
+      await userService.deleteUser(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  //ADD HASFOLLOW
+  static async addFollow(req, res) {
+    try {
+      await userService.addFollow(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  //REMOVE HASFOLLOW
+  static async unFollow(req, res) {
+    try {
+      await userService.unFollow(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+}
 
 module.exports = userController;

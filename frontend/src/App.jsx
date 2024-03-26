@@ -5,6 +5,7 @@ import './App.css';
 import { publicRoutes, adminRoutes } from './routes';
 import DefaultLayout from './Components/Layouts/DefaultLayout';
 import AdminLayouts from './admin/Layouts';
+import NotFound from './Components/NotFound/NotFound';
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
               />
             ))
           )}
+           {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </div>
     </Router>

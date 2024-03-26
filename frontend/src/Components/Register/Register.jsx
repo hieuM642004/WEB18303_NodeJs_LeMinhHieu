@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -5,11 +6,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import axios from '../../config/axiosConfig';
-import { useState } from 'react';
-
 const Register = () => {
-    const navigate=useNavigate();
-  
+	const [imageFile, setImageFile] = useState(null);
+	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			username: '',
@@ -38,37 +37,71 @@ const Register = () => {
 				.oneOf([Yup.ref('password'), null], 'Mật khẩu không khớp'),
 		}),
 		onSubmit: async (values, { setSubmitting }) => {
-            try {
-              const response = await axios.post('/auth/register', {
-                username: values.username,
-                email: values.email,
-                password: values.password,
-              });
-      
-              if (response.status === 200) {
-                
-            
-                navigate('/login');
-              } else {
-                console.error('Đăng kí không thành công.');
-              }
-            } catch (error) {
-              console.error('Đã xảy ra lỗi:', error.message);
-            }
-            setSubmitting(false);
-          },
+			try {
+				const requestData = new FormData();
+				requestData.append('username', values.username);
+				requestData.append('email', values.email);
+				requestData.append('password', values.password);
+				
+				if (imageFile !== null) {
+					requestData.append('avatar', imageFile);
+				}
+		
+				console.log(requestData);
+				const response = await axios.post(
+					'/auth/register',
+					requestData,
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data', // Đảm bảo gửi yêu cầu dưới định dạng FormData
+						},
+					}
+				);
+		
+				if (response.status === 200) {
+					navigate('/login');
+				} else {
+					console.error('Đăng ký không thành công.');
+				}
+			} catch (error) {
+				console.error('Đã xảy ra lỗi:', error.message);
+			}
+			setSubmitting(false);
+		},
+		
 	});
+	const handleImageChange = (e) => {
+		setImageFile(e.target.files[0]);
+	};
 	return (
 		<section>
 			<div className="relative flex flex-col text-gray-700 bg-transparent shadow-md p-4 mt-2 rounded-xl bg-clip-border">
 				<h4 className="text-center block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
 					Đăng kí
 				</h4>
-             
+
 				<form
 					className="max-w-screen-lg mt-8 mb-2 w-80 sm:w-96"
 					onSubmit={formik.handleSubmit}
+					encType="multipart/form-data"
+					method="post"
 				>
+					<div className="mb-4">
+						<label
+							htmlFor="avatar"
+							className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						>
+							Ảnh
+						</label>
+						<input
+							type="file"
+							id="avatar"
+							name="avatar"
+							accept="image/*"
+							onChange={handleImageChange}
+							className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+						/>
+					</div>
 					<div className="flex flex-col gap-6 mb-1">
 						<h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
 							Tên đăng kí

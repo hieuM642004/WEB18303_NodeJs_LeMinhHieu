@@ -1,59 +1,45 @@
-const Genres = require("../models/Genres");
-const multer = require("multer");
+const genresService = require("../services/genres");
 
-
-const genresController = {
-  //ADD GENRES
-  addGenres: async (req, res) => {
+class GenresController {
+  static async addGenres(req, res) {
     try {
-      const newGenres = new Genres(req.body);
-      const savedGenres = await newGenres.save();
-      res.status(200).json(savedGenres);
-    } catch (err) {
-      res.status(500).json(err); //HTTP REQUEST CODE
+      await genresService.addGenres(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //GET ALL GENRESS
-  getAllGenress: async (req, res) => {
+  static async getAllGenress(req, res) {
     try {
-      const genress = await Genres.find();
-      res.status(200).json(genress);
-    } catch (err) {
-      res.status(500).json(err);
+      await genresService.getAllGenress(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //GET AN GENRES
-  getAnGenres: async (req, res) => {
+  static async getAnGenres(req, res) {
     try {
-      const genres = await Genres.findById(req.params.id);
-      res.status(200).json(genres);
-    } catch (err) {
-      res.status(500).json(err);
+      await genresService.getAnGenres(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //UPDATE GENRES
-  updateGenres: async (req, res) => {
+  static async updateGenres(req, res) {
     try {
-      const genres = await Genres.findById(req.params.id);
-      await genres.updateOne({ $set: req.body });
-      res.status(200).json("Updated successfully!");
-    } catch (err) {
-      res.status(500).json(err);
+      await genresService.updateGenres(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
+  }
 
-  //DELETE GENRES
-  deleteGenres: async (req, res) => {
+  static async deleteGenres(req, res) {
     try {
-      await Genres.findByIdAndDelete(req.params.id);
-      res.status(200).json("Deleted successfully!");
-    } catch (err) {
-      res.status(500).json(err);
+      await genresService.deleteGenres(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-  },
-};
+  }
+}
 
-module.exports = genresController;
+module.exports = GenresController;

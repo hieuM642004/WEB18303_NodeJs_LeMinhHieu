@@ -68,7 +68,7 @@ useEffect(()=>{
 										</span>
 										<img
 											className="w-8 h-8 rounded-full"
-											src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+											src={admin ? admin[2]:''}
 											alt="user photo"
 										/>
 									</button>
@@ -82,13 +82,13 @@ useEffect(()=>{
 											className="text-sm text-gray-900 dark:text-white"
 											role="none"
 										>
-											{admin ? admin[0]:''}
+											{admin ? admin[1]:''}
 										</p>
 										<p
 											className="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
 											role="none"
 										>
-											{admin ? admin[1]:''}
+											{admin ? admin[3]:''}
 										</p>
 									</div>
 									<ul className="py-1" role="none">

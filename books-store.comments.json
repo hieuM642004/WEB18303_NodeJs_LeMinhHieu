@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "6602844b9ba3d860f7f02402"
+  },
+  "userId": {
+    "$oid": "65e32900526e1fadbdc3b96b"
+  },
+  "bookId": {
+    "$oid": "66002c3b00bb3a7c9b466768"
+  },
+  "text": " dfdfsdz",
+  "rating": 2,
+  "createdAt": {
+    "$date": "2024-03-26T08:16:11.353Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T08:16:11.353Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660284599ba3d860f7f02404"
+  },
+  "userId": {
+    "$oid": "65e32900526e1fadbdc3b96b"
+  },
+  "bookId": {
+    "$oid": "66002c3b00bb3a7c9b466768"
+  },
+  "text": " 2112qssd",
+  "rating": 2,
+  "createdAt": {
+    "$date": "2024-03-26T08:16:25.380Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T08:16:25.380Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660284bd9ba3d860f7f02415"
+  },
+  "userId": {
+    "$oid": "65e32900526e1fadbdc3b96b"
+  },
+  "bookId": {
+    "$oid": "66002c3b00bb3a7c9b466768"
+  },
+  "text": " xvxvxvxv",
+  "rating": 4,
+  "createdAt": {
+    "$date": "2024-03-26T08:18:05.040Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-26T08:18:05.040Z"
+  },
+  "__v": 0
+}]

@@ -50,14 +50,64 @@
     "https://drive.google.com/thumbnail?id=1O1ZaosJi6KdbRJ7s-7J8q-T_NsT1TwZ8"
   ],
   "publishedDate": "2024-03-29",
-  "premium": false,
+  "premium": true,
   "genres": [
     {
       "$oid": "65f64f0518e9a4c101b02d98"
+    },
+    {
+      "$oid": "65f64e39197347f8e22a4f37"
     }
   ],
   "author": {
     "$oid": "65eace9539002a5860db7a8d"
   },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65fbea2150a0fd02efad1059"
+  },
+  "name": "IELTS Foundation Essentials",
+  "content": "<p>csscscs</p>",
+  "publishedDate": "2024-03-23",
+  "premium": false,
+  "genres": [
+    {
+      "$oid": "65eb25c706b9bb1991e6fe6a"
+    }
+  ],
+  "author": {
+    "$oid": "65eacea039002a5860db7a8f"
+  },
+  "images": [
+    "https://drive.google.com/thumbnail?id=1kFuHO95eAr4qiB43_bPOMErNcOatqNlm"
+  ],
+  "pdfUrl": "https://drive.google.com/file/d/1U567WIAHlun7nem6b6pfxR9Tj7iRjnZn/view?usp=drivesdk",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66002c3b00bb3a7c9b466768"
+  },
+  "name": "test",
+  "content": "<p><em>dsfsf</em></p>",
+  "publishedDate": "2024-03-22",
+  "premium": false,
+  "genres": [
+    {
+      "$oid": "65eb107279b5c66016749548"
+    },
+    {
+      "$oid": "65eb25c706b9bb1991e6fe6a"
+    }
+  ],
+  "author": {
+    "$oid": "65eace9539002a5860db7a8d"
+  },
+  "images": [
+    "https://drive.google.com/thumbnail?id=1XeNahjg2gxxTC5F0cf5daH2FlUgqhOzi"
+  ],
+  "pdfUrl": "https://drive.google.com/file/d/14_RYPgMOfdKq0TXOS1tWIJtAgNJC5UQz/view?usp=drivesdk",
   "__v": 0
 }]

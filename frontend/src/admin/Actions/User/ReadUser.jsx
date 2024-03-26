@@ -74,6 +74,11 @@ function ReadUsers() {
                             </th>
                             <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
                                 <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                                   Avatar
+                                </p>
+                            </th>
+                            <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                                <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
                                     Email
                                 </p>
                             </th>
@@ -106,6 +111,11 @@ function ReadUsers() {
                                     <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                                         {user&& user.username}
                                     </p>
+                                </td>
+                                <td className="p-4 border-b border-blue-gray-50">
+                                   <img src= {user&& user.avatar} alt=""  className='w-10 h-10 rounded-full'/>
+                                       
+                                   
                                 </td>
                                 <td className="p-4 border-b border-blue-gray-50">
                                     <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">

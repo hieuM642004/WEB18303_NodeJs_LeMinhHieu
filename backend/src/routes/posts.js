@@ -2,6 +2,8 @@ const postsController = require("../controllers/postController");
 
 
 
+
+
 const router = require("express").Router();
 
 //ADD A GENRE

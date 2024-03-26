@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const authorSchema = new mongoose.Schema({
   name: {
     type: String,
-    required:true
+    required: true,
   },
   year: {
     type: Number,
-    required:true
-},
+    required: true,
+  },
   books: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -22,30 +22,35 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  content:{
+  content: {
     type: String,
     required: true,
   },
   publishedDate: {
     type: String,
   },
-  premium:{
-type:Boolean,
-default: false,
+  premium: {
+    type: Boolean,
+    default: false,
   },
   genres: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref:"Genres"
-    }
+      ref: "Genres",
+    },
   ],
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Author",
   },
-  images:[{
+  images: [
+    {
+      type: String,
+    },
+  ],
+  pdfUrl: {
     type: String,
-  }]
+  },
 });
 
 let Book = mongoose.model("Book", bookSchema);
