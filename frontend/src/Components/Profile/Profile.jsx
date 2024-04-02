@@ -1,12 +1,51 @@
 import { useEffect, useState } from "react";
-
+import axios from "../../config/axiosConfig";
+import moment from "moment-timezone"
+import getUsersFromLocalStorage from "../../utils/getDataUser";
 function Profile() {
     const [user,setUser]=useState()
-    useEffect(()=>{
-        const userData = localStorage.getItem('user');
-        const user=JSON.parse(userData);
-        setUser(user)
-    },[user])
+    const [premium,setPremium]=useState();
+    const [remainingDays, setRemainingDays] = useState(null);
+    useEffect(() => {
+        const getPremiums = async () => {
+            try {
+                const resPremium = await axios.get('/premium');
+                setPremium(resPremium.data);
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+        getPremiums();
+    }, []);
+    useEffect(() => {
+        setUser(getUsersFromLocalStorage()[0]) 
+    }, []);
+    console.log(premium);
+    useEffect(() => {
+        if (user && premium) {
+            const userData = getUsersFromLocalStorage()[0];
+            console.log(userData);
+            // Kiểm tra xem userId của người dùng từ local storage có tồn tại trong dữ liệu premium không
+            if (userData.id in premium) {
+                const userPremium = premium[userData.id][0];
+                const currentTimestamp = Date.now();
+                const expiryDate = userPremium.expiryDate;
+    
+                const calculateRemainingTime = (expiryDate) => {
+                    const now = moment(); // Thời gian hiện tại
+                    const expiry = moment(expiryDate); // Thời gian hết hạn
+                    const duration = moment.duration(expiry.diff(now)); // Độ dài thời gian còn lại
+                    return duration.asDays(); // Trả về số ngày còn lại
+                }
+    
+                const daysRemaining = calculateRemainingTime(expiryDate);
+                setRemainingDays(daysRemaining);
+            } else {
+                console.log("User ID không tồn tại trong dữ liệu premium");
+            }
+        }
+    }, [user, premium]);
+    console.log(remainingDays);
     return ( 
 <div
     className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
@@ -44,6 +83,7 @@ function Profile() {
         </li>
     </ul>
     <div className="p-4 border-t mx-8 mt-2">
+        <p></p>
         <button className="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Follow</button>
     </div>
 </div>

@@ -27,20 +27,20 @@ const SearchBooks = ({ onSearch }) => {
 		};
 	}, []);
 
+	const delay = 500; // Độ trễ debouncing (miliseconds)
+
 	useEffect(() => {
-		const delayDebounceFn = setTimeout(async () => {
+		const timeoutId = setTimeout(async () => {
 			try {
 				const response = await axios.get(`/book?search=${searchTerm}`);
-
-				setSearchResults(response.data);
-
-				onSearch(response.data);
+				setSearchResults(response.data.book);
+				onSearch(response.data.book);
 			} catch (error) {
 				console.error('Error searching books:', error);
 			}
-		}, 500);
+		}, delay);
 
-		return () => clearTimeout(delayDebounceFn);
+		return () => clearTimeout(timeoutId);
 	}, [searchTerm]);
 	const highlightMatches = (text, match) => {
 		const parts = text.split(new RegExp(`(${match})`, 'gi'));
@@ -59,7 +59,7 @@ const SearchBooks = ({ onSearch }) => {
 	};
 	return (
 		<div ref={inputRef}>
-			<form className="mr-5 my-3 relative">
+			<form className="mr-5 my-3 relative z-50">
 				<label
 					htmlFor="default-search"
 					className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -75,7 +75,7 @@ const SearchBooks = ({ onSearch }) => {
 						className="items-center w-full shadow-md text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 						placeholder="Tìm kiếm..."
 						required
-						autoComplete='off'
+						autoComplete="off"
 					/>
 				</div>
 				{showSuggestions && (

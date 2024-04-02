@@ -115,17 +115,21 @@
     },
     {
       "$oid": "66002c3b00bb3a7c9b466768"
+    },
+    {
+      "$oid": "660783ea3f7b85ad9e755a85"
     }
   ],
   "__v": 0,
-  "description": "Tô Hoài là một nhà văn Việt Nam. Một số tác phẩm đề tài thiếu nhi của ông được dịch ra ngoại ngữ. Wikipedia\nNgày/nơi sinh: 27 tháng 9, 1920, Kim Bài\nNgày mất: 6 tháng 7, 2014, Bệnh viện Hữu Nghị Việt Xô,"
+  "description": "Tô Hoài là một nhà văn Việt Nam. Một số tác phẩm đề tài thiếu nhi của ông được dịch ra ngoại ngữ. Wikipedia\nNgày/nơi sinh: 27 tháng 9, 1920, Kim Bài\nNgày mất: 6 tháng 7, 2014, Bệnh viện Hữu Nghị Việt Xô,",
+  "image": "https://static.vecteezy.com/system/resources/previews/019/896/008/non_2x/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
 },
 {
   "_id": {
     "$oid": "65eacea039002a5860db7a8f"
   },
   "name": "Alex",
-  "year": 2154,
+  "year": 2023,
   "books": [
     {
       "$oid": "65ebd7f4abc243f58cb81c11"
@@ -189,5 +193,6 @@
     }
   ],
   "__v": 0,
-  "description": "Nam Cao (nguyên danh Trần Hữu Tri, thánh danh Giuse[1], 29 tháng 10, năm 1915 hoặc 1917 – 30 tháng 11 năm 1951[2]) là một nhà văn, nhà thơ, nhà báo và cũng là một chiến sĩ, liệt sỹ người Việt Nam. Ông là nhà văn hiện thực lớn (trước Cách mạng Tháng Tám), một nhà báo kháng chiến (sau Cách mạng), một trong những nhà văn tiêu biểu nhất thế kỷ 20. Nam Cao có nhiều đóng góp quan trọng đối với việc hoàn thiện phong cách truyện ngắn và tiểu thuyết Việt Nam ở nửa đầu thế kỷ 20."
+  "description": "Nam Cao (nguyên danh Trần Hữu Tri, thánh danh Giuse[1], 29 tháng 10, năm 1915 hoặc 1917 – 30 tháng 11 năm 1951[2]) là một nhà văn, nhà thơ, nhà báo và cũng là một chiến sĩ, liệt sỹ người Việt Nam. Ông là nhà văn hiện thực lớn (trước Cách mạng Tháng Tám), một nhà báo kháng chiến (sau Cách mạng), một trong những nhà văn tiêu biểu nhất thế kỷ 20. Nam Cao có nhiều đóng góp quan trọng đối với việc hoàn thiện phong cách truyện ngắn và tiểu thuyết Việt Nam ở nửa đầu thế kỷ 20.",
+  "image": "https://static.vecteezy.com/system/resources/previews/019/896/008/non_2x/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
 }]

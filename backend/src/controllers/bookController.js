@@ -1,7 +1,5 @@
 const bookService = require("../services/book");
 
-
-
 class BookController {
   static async addABook(req, res) {
     try {

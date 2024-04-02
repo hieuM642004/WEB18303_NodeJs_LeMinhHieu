@@ -66,38 +66,13 @@
 },
 {
   "_id": {
-    "$oid": "65fbea2150a0fd02efad1059"
+    "$oid": "660783ea3f7b85ad9e755a85"
   },
-  "name": "IELTS Foundation Essentials",
-  "content": "<p>csscscs</p>",
-  "publishedDate": "2024-03-23",
+  "name": "tessttt",
+  "content": "<p>dgdgd</p>",
+  "publishedDate": "2024-03-14",
   "premium": false,
   "genres": [
-    {
-      "$oid": "65eb25c706b9bb1991e6fe6a"
-    }
-  ],
-  "author": {
-    "$oid": "65eacea039002a5860db7a8f"
-  },
-  "images": [
-    "https://drive.google.com/thumbnail?id=1kFuHO95eAr4qiB43_bPOMErNcOatqNlm"
-  ],
-  "pdfUrl": "https://drive.google.com/file/d/1U567WIAHlun7nem6b6pfxR9Tj7iRjnZn/view?usp=drivesdk",
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "66002c3b00bb3a7c9b466768"
-  },
-  "name": "test",
-  "content": "<p><em>dsfsf</em></p>",
-  "publishedDate": "2024-03-22",
-  "premium": false,
-  "genres": [
-    {
-      "$oid": "65eb107279b5c66016749548"
-    },
     {
       "$oid": "65eb25c706b9bb1991e6fe6a"
     }
@@ -106,8 +81,8 @@
     "$oid": "65eace9539002a5860db7a8d"
   },
   "images": [
-    "https://drive.google.com/thumbnail?id=1XeNahjg2gxxTC5F0cf5daH2FlUgqhOzi"
+    "https://drive.google.com/thumbnail?id=1078cR9GKwzpyOHujOzgD7s7BtW--hnQ4"
   ],
-  "pdfUrl": "https://drive.google.com/file/d/14_RYPgMOfdKq0TXOS1tWIJtAgNJC5UQz/view?usp=drivesdk",
+  "pdfUrl": "1InzwDOmupKREUsTiJ_y90d08-QkxwOLf",
   "__v": 0
 }]

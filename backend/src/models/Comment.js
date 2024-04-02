@@ -16,6 +16,10 @@ const commentSchema = new mongoose.Schema(
     rating: {
       type: Number,
     },
+    edited:{
+      type:Boolean,
+      default: false
+    }
   },
   { timestamps: true }
 );

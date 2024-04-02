@@ -5,6 +5,9 @@ const authorSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+  },
   year: {
     type: Number,
     required: true,
@@ -15,6 +18,10 @@ const authorSchema = new mongoose.Schema({
       ref: "Book",
     },
   ],
+  description: {
+    type: String,
+  },
+  
 });
 
 const bookSchema = new mongoose.Schema({

@@ -13,7 +13,7 @@ class postsService {
     }
   }
 
-  //GET ALL POSTSS
+  //GET ALL POSTS
   static async getAllPostss(req, res) {
     try {
       const postss = await Posts.find();
@@ -23,7 +23,7 @@ class postsService {
     }
   }
 
-  //GET AN POSTS
+  //GET AN POST
   static async getAnPosts(req, res) {
     try {
       const posts = await Posts.findById(req.params.id);

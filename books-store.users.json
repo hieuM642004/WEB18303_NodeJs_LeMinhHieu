@@ -10,7 +10,7 @@
     "$date": "2024-03-02T13:26:24.406Z"
   },
   "updatedAt": {
-    "$date": "2024-03-25T04:08:58.683Z"
+    "$date": "2024-03-30T08:14:48.587Z"
   },
   "__v": 0,
   "posts": [
@@ -25,23 +25,8 @@
     {
       "$oid": "65eace9539002a5860db7a8d"
     }
-  ]
-},
-{
-  "_id": {
-    "$oid": "65e3d6cceafb1baeb2a027f3"
-  },
-  "username": "acbjvjsnsd",
-  "email": "acvd@gmail.com",
-  "password": "$2b$10$q/hW.UMpY.TBV3AwAVmmAuBLROhon0u93V1xEv/xB8x5MzdjLMAEu",
-  "admin": false,
-  "createdAt": {
-    "$date": "2024-03-03T01:47:56.968Z"
-  },
-  "updatedAt": {
-    "$date": "2024-03-03T01:47:56.968Z"
-  },
-  "__v": 0
+  ],
+  "premium": true
 },
 {
   "_id": {
@@ -74,56 +59,6 @@
 },
 {
   "_id": {
-    "$oid": "65eacbf3e35dd0201b53bfa4"
-  },
-  "username": "usertesst",
-  "email": "test@gmail.com",
-  "password": "$2b$10$XRQ1L1t5jrds.C.0LbCFEen4dR26XAznolohowJVL.yrKQJuCy28.",
-  "admin": false,
-  "createdAt": {
-    "$date": "2024-03-08T08:27:31.695Z"
-  },
-  "updatedAt": {
-    "$date": "2024-03-08T08:27:31.695Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65ef0d4003e756d2cc24b304"
-  },
-  "username": "twopill",
-  "email": "pill@gmail.com",
-  "password": "$2b$10$GV9pb9fpO7iue8H1fj5dbu.cJWAZPQjxjlu3J776GwLbPrRvp5ixy",
-  "posts": [],
-  "admin": false,
-  "createdAt": {
-    "$date": "2024-03-11T13:55:12.629Z"
-  },
-  "updatedAt": {
-    "$date": "2024-03-11T13:55:12.629Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65ef0e5603e756d2cc24b308"
-  },
-  "username": "studyeveryday",
-  "email": "hieust@gmail.com",
-  "password": "$2b$10$S78.wQj78rzfM4sBxx6Y6uy1sTO7Mwa2UxEaTtQZIlx7cUlOk82YC",
-  "posts": [],
-  "admin": false,
-  "createdAt": {
-    "$date": "2024-03-11T13:59:50.579Z"
-  },
-  "updatedAt": {
-    "$date": "2024-03-11T13:59:50.579Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
     "$oid": "65ef0f0e03e756d2cc24b30c"
   },
   "username": "admin12345",
@@ -143,8 +78,8 @@
   "_id": {
     "$oid": "65ef100a03e756d2cc24b30e"
   },
-  "username": "vvsdffffffđ",
-  "email": "kjih@gmail.com",
+  "username": "has update name",
+  "email": "has@gmail.com",
   "password": "$2b$10$vKfWecbET2CO6v8aTQk/CeCPZDj34CkMIgPORHwmyHvRuMI/l7j7q",
   "posts": [],
   "admin": false,
@@ -152,25 +87,7 @@
     "$date": "2024-03-11T14:07:06.508Z"
   },
   "updatedAt": {
-    "$date": "2024-03-11T14:07:06.508Z"
-  },
-  "__v": 0
-},
-{
-  "_id": {
-    "$oid": "65f7f6c2b6b22a07656d48fc"
-  },
-  "username": "twopilldffdfdfdfdff",
-  "avatar": "img.png",
-  "email": "pillddfdfdf@gmail.com",
-  "password": "$2b$10$TL7tN4OQe6/.szZfg6epROlf8a/7F4jSFs0XTjLbSceUFRYwXEdvS",
-  "admin": false,
-  "hasFollow": [],
-  "createdAt": {
-    "$date": "2024-03-18T08:09:38.812Z"
-  },
-  "updatedAt": {
-    "$date": "2024-03-18T08:09:38.812Z"
+    "$date": "2024-03-27T07:02:31.855Z"
   },
   "__v": 0
 },

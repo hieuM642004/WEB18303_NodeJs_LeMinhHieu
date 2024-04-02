@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faUser } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../../../assets/img/open-book.png';
 import SearchBooks from './Search/Search';
 import handleLogout from '../../../Logout/Logout';
@@ -27,7 +27,7 @@ function Navbar() {
 					</span>
 				</Link>
 				<div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse ">
-				{/* <Notification/> */}
+				<Notification/>
 					<SearchBooks />
 					{user ? (
 						<>
@@ -40,21 +40,22 @@ function Navbar() {
 								data-dropdown-placement="bottom"
 							>
 								<span className="sr-only">Open user menu</span>
-								<img
-									className="w-8 h-8 rounded-full"
-									src={
+								<span className="relative inline-block">
+    <img src={
 										user[2] ||
 										'https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg'
-									}
-									alt="user photo"
-								/>
+									} className="object-cover w-10 h-10 rounded-full "/>
+								{user[4]?<FontAwesomeIcon className='absolute  top-0 right-0 w-4 h-4 transform rotate-45 text-yellow-300' icon={faCrown}/> : ''}	
+
+</span>
+							
 							</button>
 							{/* Dropdown menu */}
 							<div
 								className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
 								id="user-dropdown"
 							>
-								<div className="px-4 py-3 ">
+								<div className="px-4 py-3">
 									<span className="block text-sm text-gray-900 dark:text-white">
 										{user[1]}
 									</span>
@@ -144,7 +145,7 @@ function Navbar() {
 								to="/contact"
 								className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 							>
-								Thể loại
+								Tác giả
 							</Link>
 						</li>
 						<li>

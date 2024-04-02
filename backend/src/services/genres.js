@@ -24,7 +24,7 @@ class genresService {
   }
 
   //GET AN GENRES
-  async getAnGenres(req, res) {
+ static async getAnGenres(req, res) {
     try {
       const genres = await Genres.findById(req.params.id);
       res.status(200).json(genres);
@@ -46,6 +46,7 @@ class genresService {
 
   //DELETE GENRES
   static async deleteGenres(req, res) {
+    
     try {
       await Genres.findByIdAndDelete(req.params.id);
       res.status(200).json("Deleted successfully!");

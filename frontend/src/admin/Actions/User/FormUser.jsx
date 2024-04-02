@@ -59,14 +59,14 @@ function FormUser() {
                 formData.append('username', values.username);
                 formData.append('password', values.password);
                 formData.append('email', values.email);
-                formData.append('avatar', values.avatar);
+                formData.append('avatar', imageFile);
                 formData.append('isAdmin', values.isAdmin);
 
                 let response;
                 if (isEditForm) {
                     response = await axios.put(`/user/${id}`, formData);
                 } else {
-                    response = await axios.post('/user', formData);
+                    response = await axios.post('/auth/register', formData);
                 }
 
                 if (response.status === 200 ) {

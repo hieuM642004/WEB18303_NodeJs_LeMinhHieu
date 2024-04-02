@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ConfirmationModal from '../../Components/ConfirmationModal/ConfirmationModal';
 
-function ReadUsers() {
+function ReadComments() {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
@@ -113,7 +113,7 @@ function ReadUsers() {
                                     </p>
                                 </td>
                                 <td className="p-4 border-b border-blue-gray-50">
-                                   <img src= {user&& user.avatar} alt="Avatar user"  className='w-10 h-10 rounded-full'/>
+                                   <img src= {user&& user.avatar} alt=""  className='w-10 h-10 rounded-full'/>
                                        
                                    
                                 </td>
@@ -166,4 +166,4 @@ function ReadUsers() {
     );
 }
 
-export default ReadUsers;
+export default ReadComments;

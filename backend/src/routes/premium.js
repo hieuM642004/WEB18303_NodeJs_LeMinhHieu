@@ -4,6 +4,7 @@ const router = require("express").Router();
 
 //ADD A PREMIUM  PACKAGE
 router.post("/register", premiumController.addPremium);
+router.get("/", premiumController.getAllPremium);
 // router.post("/create_payment_url", premiumController.createPaymentUrl);
 // router.get("/vnpay_ipn", premiumController.vnpayIpn);
 // router.get("/vnpay_return", premiumController.vnpayReturn);

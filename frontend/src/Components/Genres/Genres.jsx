@@ -13,7 +13,7 @@ function Genres() {
 				const genreResponse = await axios.get(`/genres/${id}`);
 				setGenre(genreResponse.data);
 				const booksResponse = await axios.get('/book');
-				const matchedBooks = booksResponse.data.filter((book) =>
+				const matchedBooks = booksResponse.data.book.filter((book) =>
 					book.genres.includes(id),
 				);
 				setBooks(matchedBooks);
@@ -64,7 +64,7 @@ function Genres() {
 												? book.content.substring(
 														0,
 														100,
-												  ) + '...'
+													) + '...'
 												: book.content,
 									}}
 								></h5>

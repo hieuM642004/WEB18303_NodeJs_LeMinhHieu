@@ -20,6 +20,14 @@ class userController {
       res.status(500).json({ error: error.message });
     }
   }
+  //EDIT A USER
+  static async editUser(req, res) {
+    try {
+      await userService.editUser(req, res);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 
   //DELETE A USER
   static async deleteUser(req, res) {

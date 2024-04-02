@@ -10,8 +10,9 @@ const router = require("express").Router();
 router.get("/",userController.getAllUsers);
 router.get("/:id",userController.getAUsers); 
 router.post("/:id",userController.addFollow); 
-router.delete("/:id",userController.unFollow); 
+router.put("/:id",userController.editUser); 
+router.delete("/:id/unfollow",userController.unFollow); 
 //DELETE USER
-router.delete("/:id", verifyTokenAndUserAuthorization, userController.deleteUser);
+router.delete("/:id", userController.deleteUser);
 
 module.exports = router;

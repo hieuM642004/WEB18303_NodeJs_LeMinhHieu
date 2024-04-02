@@ -35,7 +35,7 @@ function Author() {
 			const userId = dataUsser[0];
 			if (userId) {
 				if (follow) {
-					await axios.delete(`/user/${userId}`, {
+					await axios.delete(`/user/${userId}/unfollow`, {
 						data: {
 							hasFollow: id,
 						},
@@ -60,7 +60,7 @@ function Author() {
 							<div className="bg-white shadow rounded-lg p-6">
 								<div className="flex flex-col items-center">
 									<img
-										src="https://randomuser.me/api/portraits/men/94.jpg"
+										src={author.image}
 										className="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0"
 										alt="Author Avatar"
 									/>
@@ -103,11 +103,11 @@ function Author() {
 										{author.name}
 									</span>
 								</h2>
-								<div className="grid ">
+								<div className="grid grid-cols-3 gap-3">
 									{author.books.map((book, index) => (
 										<div
 											key={index}
-											className="relative  flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 "
+											className="relative  flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-72 "
 										>
 											<div className="p-6 ">
 												<h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">

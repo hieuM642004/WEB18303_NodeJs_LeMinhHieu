@@ -66,7 +66,7 @@ class bookService {
         const newBook = new Book({
           ...req.body,
           images: [`https://drive.google.com/thumbnail?id=${imageId}`],
-          pdfUrl: pdfUrl,
+          pdfUrl: pdfId,
         });
         // Save the new book to database
         const savedBook = await newBook.save();
@@ -92,15 +92,29 @@ class bookService {
   static async getAllBooks(req, res) {
     try {
       let query = {};
-
+      let page = parseInt(req.query.page) || 1; 
+      let limit = parseInt(req.query.limit) || 2; 
+  
+   
       if (req.query.search) {
-        query = { name: { $regex: new RegExp(req.query.search, "i") } };
+        query = { name: { $regex: new RegExp(req.query.search, 'i') } };
       }
-
-      const allBooks = await Book.find(query);
-      res.status(200).json(allBooks);
-    } catch (err) {
-      res.status(500).json(err);
+  
+      
+      const totalCount = await Book.countDocuments(query);
+  
+     
+      const totalPages = Math.ceil(totalCount / limit);
+  
+     
+      const skip = (page - 1) * limit;
+  
+    
+      const book = await Book.find(query).skip(skip).limit(limit);
+  
+      res.status(200).json({ totalPages, totalCount, currentPage: page, book });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
   }
 

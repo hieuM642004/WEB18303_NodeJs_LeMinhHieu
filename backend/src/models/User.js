@@ -5,25 +5,29 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
       require: true,
-      min: 6,
-      max: 20,
-      unique: true,
+      // min: 6,
+      // max: 20,
+      // unique: true,
     },
     avatar:{
       type: String,
     },
     email: {
       type: String,
-      require: true,
-      max: 50,
-      unique: true,
+      // require: true,
+      // max: 50,
+      // unique: true,
     },
     password: {
       type: String,
-      require: true,
-      min: 6,
+      // require: true,
+      // min: 6,
     },
     admin: {
+      type: Boolean,
+      default: false,
+    },
+    premium: {
       type: Boolean,
       default: false,
     },

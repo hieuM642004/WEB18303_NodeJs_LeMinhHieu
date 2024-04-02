@@ -1,24 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from '../../config/axiosConfig';
-import {
-	Page,
-	Text,
-	View,
-	Document,
-	StyleSheet,
-	PDFViewer,
-} from '@react-pdf/renderer';
 import { io } from 'socket.io-client';
 
 import CommentSection from '../Comment/CommentSection';
-
 const socket = io.connect('http://localhost:3001');
+import { Document, Page, StyleSheet } from '@react-pdf/renderer';
 function DetailBook() {
 	const { id } = useParams();
 	const [book, setBook] = useState({});
 	const [genres, setGenres] = useState([]);
-
 	useEffect(() => {
 		const fetchBookAndGenres = async () => {
 			try {
@@ -51,15 +42,6 @@ function DetailBook() {
 			flexGrow: 1,
 		},
 	});
-	const MyDocument = () => (
-		<Document>
-			<Page size="A4" style={styles.page}>
-				<View style={styles.section}>
-					<Text>{book.pdfUrl}</Text>
-				</View>
-			</Page>
-		</Document>
-	);
 	return (
 		<div className="mt-3   shadow-md w-full rounded-md">
 			<i className="ml-40 text-sm italic">
@@ -100,11 +82,21 @@ function DetailBook() {
 					</figcaption>
 				</figure>
 
-				<div className="w-3/4 mt-2 mb-2">
-					<PDFViewer>
-						{' '}
-						<MyDocument />
-					</PDFViewer>
+				<div className=" mb-2">
+					<iframe
+					style={styles}
+						frameBorder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen
+						src={`https://drive.google.com/file/d/${book && book.pdfUrl}/preview`}
+						width="1000"
+						height="1000"
+					></iframe>
+					{/* <Document
+						file={`https://drive.google.com/file/d/${book && book.pdfUrl}/preview`}
+					>
+						<Page pageNumber={1} width={1000} />
+					</Document> */}
 				</div>
 			</div>
 			<hr className="w-3/4 mx-auto" />
@@ -187,7 +179,7 @@ function DetailBook() {
 			</div>
 			{/*End sharing section */}
 			{/* Comment section */}
-		<CommentSection/>
+			<CommentSection />
 		</div>
 	);
 }
