@@ -11,11 +11,20 @@ function CardsBooks() {
 	const [authors, setAuthors] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
+	const [showPremium, setShowPremium] = useState(false);
+	const [showFree, setShowFree] = useState(false);
 
 	useEffect(() => {
 		const fetchBooksAndGenres = async () => {
 			try {
-				const response = await axios.get(`/book?page=${currentPage}`);
+				let url = `/book?page=${currentPage}`;
+				if (showPremium) {
+					url += '&premium=true';
+				}
+				if (showFree) {
+					url += '&premium=false';
+				}
+				const response = await axios.get(url);
 				setBooks(response.data.book);
 				setTotalPages(response.data.totalPages);
 				const genresResponse = await axios.get('/genres');
@@ -27,7 +36,7 @@ function CardsBooks() {
 			}
 		};
 		fetchBooksAndGenres();
-	}, [currentPage]);
+	}, [currentPage, showPremium, showFree]);
 
 	const handleClick = (event) => {
 		if (event.currentTarget.disabled) {
@@ -48,9 +57,39 @@ function CardsBooks() {
 		setCurrentPage((prevPage) => prevPage - 1);
 	};
 
+	const togglePremium = () => {
+		setShowPremium((prevState) => !prevState);
+		setShowFree(false);
+	};
+	const showAll = () => {
+		setShowFree(false);
+		setShowPremium(false);
+	};
 	return (
 		<>
-			<div className="grid grid-cols-3 gap-4">
+			<div className="flex justify-center">
+				<button
+					className="m-2 align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]"
+					onClick={showAll}
+				>
+					All
+				</button>
+				<button
+					className="m-2 align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]"
+					onClick={togglePremium}
+				>
+					Pre
+				</button>
+
+				<button
+					className="m-2 align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-gray-900 text-gray-900 hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85]"
+					onClick={() => setShowFree(!showFree)}
+				>
+					Free
+				</button>
+			</div>
+
+			<div className="flex flex-wrap -mx-1 lg:-mx-4">
 				{books.map((book, index) => {
 					const author = authors.find(
 						(author) => author._id === book.author,
@@ -59,107 +98,133 @@ function CardsBooks() {
 					return (
 						<div
 							key={index}
-							className="relative flex flex-col mt-6 text-gray-700 bg-white  bg-clip-border rounded-xl w-96"
-							style={{
-								boxShadow:
-									'rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px',
-							}}
+							className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3"
 						>
-							<div className=" mx-auto">
-								{book.images &&
-									book.images.map((imageUrl, imageIndex) => (
-										<div key={imageIndex}>
-											<img
-												src={imageUrl}
-												alt={`book-image-${imageIndex}`}
-												className="w-50"
-											/>
-										</div>
-									))}
-							</div>
+							<article className="overflow-hidden rounded-lg shadow-lg">
+								<a href="#">
+									{book.images &&
+										book.images.map(
+											(imageUrl, imageIndex) => (
+												<div key={imageIndex}>
+													<img
+														src={imageUrl}
+														alt={`book-image-${imageIndex}`}
+														className="block h-auto w-full"
+													/>
+												</div>
+											),
+										)}
+								</a>
 
-							<div className="p-6">
-								<h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-									{book.name}
-								</h5>
-								<p className="flex flex-col justify-start font-sans text-base antialiased font-light leading-relaxed text-inherit">
+								<header className="flex items-center justify-between leading-tight p-2 md:p-4">
+									<h1 className="text-lg font-semibold">
+										
+											{book.name}
+										
+									</h1>
+								</header>
+								<main className='p-2 md:p-4'>
+									<p className="text-grey-darker text-xs text-gray-500" >
+									{book.publishedDate}
+									</p>
+
 									<div
-										className="flex flex-col justify-start font-sans text-base antialiased font-light leading-relaxed text-inherit"
-										dangerouslySetInnerHTML={{
-											__html:
-												book.content.length > 100
-													? book.content.substring(
-															0,
-															100,
-														) + '...'
-													: book.content,
-										}}
-									></div>
-									<div className="flex">
-										{book.genres.map((genreId) => {
-											const genre = genres.find(
-												(genre) =>
-													genre._id === genreId,
-											);
-											return genre ? (
-												<Link
-													to={`/genres/${genre._id}`}
-													key={genre._id}
-												>
-													<a className="bg-blue-gray-100 w-fit p-1 text-xs italic rounded-md cursor-pointer m-1">
-														<span className="m-2">
-															#{genre.name}
-														</span>
-													</a>
-												</Link>
-											) : null;
-										})}
-									</div>
-									<div className="flex">
+									className="mx-auto font-sans text-base antialiased font-light leading-relaxed text-inherit"
+									dangerouslySetInnerHTML={{
+										__html:
+											book.content.length > 100
+												? book.content.substring(
+														0,
+														100,
+													) + '...'
+												: book.content,
+									}}
+								></div>
+								<div className="flex">
+									{book.genres.map((genreId) => {
+										const genre = genres.find(
+											(genre) => genre._id === genreId,
+										);
+										return genre ? (
+											<Link
+												to={`/genres/${genre._id}`}
+												key={genre._id}
+											>
+												<a className="bg-gray-100 rounded-full px-3 py-1  font-semibold text-gray-600 text-xs italic ">
+													<span className="m-2">
+														#{genre.name}
+													</span>
+												</a>
+											</Link>
+										) : null;
+									})}
+								</div>
+								</main>
+								
+								<footer className="flex items-center justify-between leading-none p-2 md:p-4">
+									<a
+										className="flex items-center no-underline hover:underline text-black"
+										href="#"
+									>
 										{author ? (
 											<Link
 												to={`/author/${author._id}`}
 												key={index}
 											>
-												<span className="bg-blue-gray-100 w-fit p-1 text-xs italic rounded-md cursor-pointer m-1">
-													<span className="m-2">
-														@{author.name}
+												<div className="flex">
+													<img
+														alt="Placeholder"
+														className="block rounded-full w-8 h-8"
+														src={author.image}
+													/>
+													<span className="bg-gray-100 rounded-full px-3 py-1  font-semibold text-gray-600 text-xs italic  w-fit p-1 text-xs italic rounded-md cursor-pointer m-1">
+														<span className="ml-2 text-sm">
+															@{author.name}
+														</span>
 													</span>
-												</span>
+												</div>
 											</Link>
 										) : null}
-									</div>
-								</p>
-							</div>
-
-							<div className="p-6 pt-0">
-								<Link
-									to={
-										book.premium && !isPremiumUser()
-											? '/pricing'
-											: `/book/${book._id}`
-									}
-								>
-									<button
-										className={`align-middle select-none font-sans font-bold text-center uppercase transition-all text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none ${
-											book.premium && !isPremiumUser()
-												? 'disabled:opacity-50 bg-yellow-400 disabled:shadow-none disabled:pointer-events-none '
-												: ''
-										}`}
-										type="button"
-										disabled={
-											book.premium && !isPremiumUser()
-										}
-										onClick={handleClick}
+									</a>
+									<a
+										className="no-underline text-grey-darker hover:text-red-dark"
+										href="#"
 									>
-										{book.premium ? (
-											<FontAwesomeIcon icon={faCrown} />
-										) : (
-											'Đọc thêm'
-										)}
-									</button>
-								</Link>
-							</div>
+										<span className="hidden">Like</span>
+										<i className="fa fa-heart"></i>
+										<Link
+											to={
+												book.premium && !isPremiumUser()
+													? '/pricing'
+													: `/book/${book._id}`
+											}
+										>
+											<button
+												className={`align-middle select-none font-sans font-bold text-center uppercase transition-all text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none ${
+													book.premium &&
+													!isPremiumUser()
+														? 'disabled:opacity-50 bg-yellow-400 disabled:shadow-none disabled:pointer-events-none '
+														: ''
+												}`}
+												type="button"
+												disabled={
+													book.premium &&
+													!isPremiumUser()
+												}
+												onClick={handleClick}
+											>
+												{book.premium ? (
+													<FontAwesomeIcon
+														icon={faCrown}
+													/>
+												) : (
+													'Đọc thêm'
+												)}
+											</button>
+										</Link>
+									</a>
+								</footer>
+							</article>
 						</div>
 					);
 				})}
@@ -180,14 +245,14 @@ function CardsBooks() {
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
 							viewBox="0 0 24 24"
-							stroke-width="2"
+							strokeWidth="2"
 							stroke="currentColor"
 							aria-hidden="true"
 							className="w-4 h-4"
 						>
 							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 								d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
 							></path>
 						</svg>
@@ -226,14 +291,14 @@ function CardsBooks() {
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
 							viewBox="0 0 24 24"
-							stroke-width="2"
+							strokeWidth="2"
 							stroke="currentColor"
 							aria-hidden="true"
 							className="w-4 h-4"
 						>
 							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 								d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
 							></path>
 						</svg>

@@ -1,6 +1,6 @@
 //User routes
 import Author from "../Components/Author/Author"
-import Contact from "../Components/Contact/Contact"
+import Authors from "../Components/Authors/Authors"
 import DetailBook from "../Components/DetailBook/DetailBook"
 import Genres from "../Components/Genres/Genres"
 import HomePage from "../Components/Home/HomePage"
@@ -10,6 +10,8 @@ import Posts from "../Components/Posts/Posts"
 import Profile from "../Components/Profile/Profile"
 import Register from "../Components/Register/Register";
 import PricingCard from "../Service/PricingCard/PricingCard"
+
+//Admin routes
 import FormAuthor from "../admin/Actions/Authors/FormAuthor"
 import ReadAuthors from "../admin/Actions/Authors/ReadAuthor"
 import FormBook from "../admin/Actions/Book/FormBook"
@@ -19,8 +21,6 @@ import ReadGenres from "../admin/Actions/Genres/ReadGenres"
 import ReadPremiumUser from "../admin/Actions/PremiumUsers/PremiumUsers"
 import FormUser from "../admin/Actions/User/FormUser"
 import ReadUsers from "../admin/Actions/User/ReadUser"
-
-//Admin routes
 import Dashboard from "../admin/Components/Dashboard/Dashboard"
 
 const publicRoutes=[
@@ -28,7 +28,7 @@ const publicRoutes=[
     {path:'/login',component:Login},
     {path:'/register',component:Register},
     {path:'/user/:id',component:Profile},
-    {path:'/contact',component:Contact},
+    {path:'/authors',component:Authors},
     {path:'/book/:id',component:DetailBook},
     {path:'/author/:id',component:Author},
     {path:'/genres/:id',component:Genres},

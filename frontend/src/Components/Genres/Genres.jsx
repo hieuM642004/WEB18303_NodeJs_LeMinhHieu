@@ -1,27 +1,27 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from '../../config/axiosConfig';
+import CardsBooks from '../CardsBooks/CarsBooks';
 
 function Genres() {
 	const { id } = useParams();
-	const [genre, setGenre] = useState([]);
+	const [genre, setGenre] = useState({});
 	const [books, setBooks] = useState([]);
 
 	useEffect(() => {
-		const fetchGenres = async () => {
+		const fetchGenresAndBooks = async () => {
 			try {
 				const genreResponse = await axios.get(`/genres/${id}`);
 				setGenre(genreResponse.data);
-				const booksResponse = await axios.get('/book');
-				const matchedBooks = booksResponse.data.book.filter((book) =>
-					book.genres.includes(id),
-				);
-				setBooks(matchedBooks);
+				const booksResponse = await axios.get('/book', {
+					params: { genreId: id },
+				});
+				setBooks(booksResponse.data.book);
 			} catch (error) {
 				console.log(error);
 			}
 		};
-		fetchGenres();
+		fetchGenresAndBooks();
 	}, [id]);
 
 	return (
@@ -32,7 +32,7 @@ function Genres() {
 					aria-hidden="true"
 					role="presentation"
 				></span>
-				<span className="flex-none block mx-4   px-4 py-2.5 text-xs leading-none font-medium uppercase bg-black text-white">
+				<span className="flex-none block mx-4 px-4 py-2.5 text-xs leading-none font-medium uppercase bg-black text-white">
 					{genre.name}
 				</span>
 				<span
@@ -41,39 +41,7 @@ function Genres() {
 					role="presentation"
 				></span>
 			</h2>
-
-			<div className="grid grid-cols-3 gap-4">
-				{books.map((book) => (
-					<div
-						key={book._id}
-						className="relative grid  w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700"
-					>
-						<Link to={`/book/${book._id}`}>
-							<div className="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-none">
-								<div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
-							</div>
-							<div className="relative p-6 px-6 py-14 md:px-12">
-								<h2 className="mb-6 block font-sans text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
-									{book.name}
-								</h2>
-								<h5
-									className="block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-gray-400"
-									dangerouslySetInnerHTML={{
-										__html:
-											book.content.length > 100
-												? book.content.substring(
-														0,
-														100,
-													) + '...'
-												: book.content,
-									}}
-								></h5>
-								{/* <img alt={book.author} src={book.image} className="relative inline-block h-[74px] w-[74px] !rounded-full border-2 border-white object-cover object-center" /> */}
-							</div>
-						</Link>
-					</div>
-				))}
-			</div>
+			<CardsBooks books={books} />
 		</section>
 	);
 }

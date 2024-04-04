@@ -92,26 +92,27 @@ class bookService {
   static async getAllBooks(req, res) {
     try {
       let query = {};
-      let page = parseInt(req.query.page) || 1; 
-      let limit = parseInt(req.query.limit) || 2; 
-  
-   
-      if (req.query.search) {
-        query = { name: { $regex: new RegExp(req.query.search, 'i') } };
+      let page = parseInt(req.query.page) || 1;
+      let limit = parseInt(req.query.limit) || 10;
+
+      if (req.query.genreId) {
+        query = { genres: { $in: [req.query.genreId] } };
       }
-  
-      
+
+      if (req.query.search) {
+        query.name = { $regex: new RegExp(req.query.search, "i") };
+      }
+      if (req.query.premium) {
+        query.premium = req.query.premium === "true";
+      }
       const totalCount = await Book.countDocuments(query);
-  
-     
+
       const totalPages = Math.ceil(totalCount / limit);
-  
-     
+
       const skip = (page - 1) * limit;
-  
-    
+
       const book = await Book.find(query).skip(skip).limit(limit);
-  
+
       res.status(200).json({ totalPages, totalCount, currentPage: page, book });
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -131,9 +132,49 @@ class bookService {
   //UPDATE BOOK
   static async updateBook(req, res) {
     try {
-      const book = await Book.findById(req.params.id);
-      await book.updateOne({ $set: req.body });
-      res.status(200).json("Updated successfully!");
+      upload.fields([
+        { name: "image", maxCount: 1 },
+        { name: "pdfFile", maxCount: 1 },
+      ])(req, res, async (err) => {
+        if (err) {
+          return res.status(400).json({ message: "Upload failed", error: err });
+        }
+
+        const book = await Book.findById(req.params.id);
+
+        if (req.files && req.files["image"]) {
+          const imageFile = req.files["image"][0];
+          console.log(imageFile);
+          const imageMetadata = {
+            name: imageFile.filename,
+            addParents: ["1TdIAHWTpH1eSejDLcJAF5nD65v_NQ38V"],
+          };
+
+          const imageMedia = {
+            mimeType: imageFile.mimetype,
+            body: fs.createReadStream(imageFile.path),
+          };
+          const imageId = book.images[0].split("=")[1];
+          const imageResponse = await drive.files.update({
+            fileId: imageId,
+            resource: imageMetadata,
+            media: imageMedia,
+            fields: "id, webViewLink",
+          });
+          const imageUrl = imageResponse.data.webViewLink;
+          const updatedImageId = imageResponse.data.id;
+
+          book.images = [
+            `https://drive.google.com/thumbnail?id=${updatedImageId}`,
+          ];
+
+          fs.unlinkSync(imageFile.path);
+        }
+
+        await book.updateOne({ $set: req.body });
+
+        res.status(200).json("Updated successfully!");
+      });
     } catch (err) {
       res.status(500).json(err);
     }

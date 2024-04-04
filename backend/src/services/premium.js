@@ -83,7 +83,7 @@ await User.findByIdAndUpdate(userId,{premium:true});
   //   vnp_Params["vnp_Version"] = "2.1.0";
   //   vnp_Params["vnp_Command"] = "pay";
   //   vnp_Params["vnp_TmnCode"] = tmnCode;
-  //   // vnp_Params['vnp_Merchant'] = ''
+  //   vnp_Params['vnp_Merchant'] = ''
   //   vnp_Params["vnp_Locale"] = locale;
   //   vnp_Params["vnp_CurrCode"] = currCode;
   //   vnp_Params["vnp_TxnRef"] = orderId;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from '../../config/axiosConfig';
 import { Link } from 'react-router-dom';
-const Contact = () => {
+const Authors = () => {
     const [authors, setAuthors] = useState([]);
 
     useEffect(() => {
@@ -99,4 +99,4 @@ const Contact = () => {
 	);
 };
 
-export default Contact;
+export default Authors;

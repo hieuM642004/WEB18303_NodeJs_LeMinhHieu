@@ -40,12 +40,20 @@ app.use("/v1/premium", premiumPackage);
 app.use("/v1/comments", commentPackage);
 
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-  },
-});
+const io = new Server(server, { cors: { 
+  origin: "*",
+ }
+ });
+
+// const httpProxy = require("http-proxy");
+
+// httpProxy
+//   .createProxyServer({
+//     target: "http://localhost:5173/",
+//     ws: true,
+//   })
+//   .listen(3001);
+
 // app.listen(3000, () => {
 //   console.log("Server is running...");
 // });
@@ -101,7 +109,7 @@ const io = new Server(server, {
 //     console.error("Error getting all comments:", error);
 //   }
 // });
-commentsWebSocket(io)
+commentsWebSocket(io);
 server.listen(3001, () => {
   console.log("Server is running...");
 });

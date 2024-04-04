@@ -90,10 +90,16 @@ function FormBook() {
 					image: imageFile,
 					pdfFile: pdfFile,
 				};
-				console.log(imageFile);
+				console.log(requestData);
 				let response;
 				if (isEditForm) {
-					response = await axios.put(`/book/${id}`, requestData);
+					response = await axios.put(`/book/${id}`, requestData,
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data',
+						},
+					}
+					);
 				} else {
 					response = await axios.post('/book', requestData, {
 						headers: {
@@ -120,6 +126,7 @@ function FormBook() {
 
 	const handleImageChange = (e) => {
 		setImageFile(e.target.files[0]);
+		
 	};
 	const handlePdfFileChange = (e) => {
 		const file = e.target.files[0];

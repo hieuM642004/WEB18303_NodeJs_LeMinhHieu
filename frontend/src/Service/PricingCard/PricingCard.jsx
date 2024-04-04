@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from '../../config/axiosConfig';
+import PaymentForm from './Payments';
 
 function PricingCard() {
 	const handleSignUp = async (money, packageType) => {
@@ -15,7 +16,7 @@ function PricingCard() {
 				packageType,
 			});
 			console.log('Đăng ký thành công!', response.data);
-            toast.success("Đăng kí thành công")
+			toast.success('Đăng kí thành công');
 		} catch (error) {
 			console.error('Đã xảy ra lỗi khi đăng ký:', error);
 		}
@@ -23,7 +24,8 @@ function PricingCard() {
 
 	return (
 		<section className="bg-white dark:bg-gray-900 mt-5">
-             <ToastContainer />
+			<PaymentForm />
+			<ToastContainer />
 			<div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
 				<div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
 					<h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
@@ -57,9 +59,9 @@ function PricingCard() {
 									xmlns="http://www.w3.org/2000/svg"
 								>
 									<path
-										fill-rule="evenodd"
+										fillRule="evenodd"
 										d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-										clip-rule="evenodd"
+										clipRule="evenodd"
 									></path>
 								</svg>
 								<span>
@@ -98,9 +100,9 @@ function PricingCard() {
 									xmlns="http://www.w3.org/2000/svg"
 								>
 									<path
-										fill-rule="evenodd"
+										fillRule="evenodd"
 										d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-										clip-rule="evenodd"
+										clipRule="evenodd"
 									></path>
 								</svg>
 								<span>
@@ -139,9 +141,9 @@ function PricingCard() {
 									xmlns="http://www.w3.org/2000/svg"
 								>
 									<path
-										fill-rule="evenodd"
+										fillRule="evenodd"
 										d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-										clip-rule="evenodd"
+										clipRule="evenodd"
 									></path>
 								</svg>
 								<span>
