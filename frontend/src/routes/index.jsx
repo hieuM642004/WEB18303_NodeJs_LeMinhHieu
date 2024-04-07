@@ -16,6 +16,7 @@ import FormAuthor from "../admin/Actions/Authors/FormAuthor"
 import ReadAuthors from "../admin/Actions/Authors/ReadAuthor"
 import FormBook from "../admin/Actions/Book/FormBook"
 import ReadBooks from "../admin/Actions/Book/ReadBooks"
+import ReadComments from "../admin/Actions/Comments/ReadComments"
 import FormGenres from "../admin/Actions/Genres/FormGenres"
 import ReadGenres from "../admin/Actions/Genres/ReadGenres"
 import ReadPremiumUser from "../admin/Actions/PremiumUsers/PremiumUsers"
@@ -53,6 +54,7 @@ const adminRoutes=[
 {path:'/admin/authors',component:ReadAuthors},
 {path:'/admin/author/add-author',component:FormAuthor},
 {path:'/admin/author/edit-author/:id',component:FormAuthor},
+{path:'/admin/comments',component:ReadComments},
 
 ]
 

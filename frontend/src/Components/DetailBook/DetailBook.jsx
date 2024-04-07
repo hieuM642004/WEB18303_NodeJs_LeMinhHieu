@@ -77,9 +77,6 @@ function DetailBook() {
 								/>
 							</div>
 						))}
-					<figcaption className="mt-2 text-sm text-center text-gray-500 dark:text-gray-400">
-						Image caption
-					</figcaption>
 				</figure>
 
 				<div className=" mb-2">

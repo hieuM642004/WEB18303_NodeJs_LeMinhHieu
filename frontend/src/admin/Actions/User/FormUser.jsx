@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from '../../../config/axiosConfig';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loading from '../../Components/Loading/Loading';
 
 function FormUser() {
     const { id } = useParams();
@@ -12,24 +13,24 @@ function FormUser() {
     const navigate = useNavigate();
 
     const [imageFile, setImageFile] = useState(null);
-
+    const [processing, setProcessing] = useState(false);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // Fetch necessary data based on id or isEditForm
+                
                 if (isEditForm) {
-                    // Fetch data for editing user with id
+                   
                     const response = await axios.get(`/user/${id}`);
                     const userData = response.data;
     
-                    // Set form values using formik.setValues()
+                  
                     formik.setValues({
                         username: userData.username,
                         email: userData.email,
-                        // Populate other fields as needed
+                      
                     });
     
-                    // You may also fetch additional data here if needed
+                    
                 } 
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -54,6 +55,7 @@ function FormUser() {
             email: Yup.string().email('Invalid email address').required('Email is required'),
         }),
         onSubmit: async (values, { setSubmitting }) => {
+            setProcessing(true)
             try {
                 const formData = new FormData();
                 formData.append('username', values.username);
@@ -70,7 +72,8 @@ function FormUser() {
                 }
 
                 if (response.status === 200 ) {
-                    const message = isEditForm ? 'User updated successfully' : 'User added successfully';
+                    setProcessing(false)
+                    const message = isEditForm ? 'Người dùng cập nhật thành công' : 'Người dùng thêm thành công';
                     toast.success(message);
                     navigate('/admin/user');
                 } else {
@@ -91,6 +94,9 @@ function FormUser() {
 
     return (
         <section className="bg-white dark:bg-gray-900">
+            {
+                processing && <Loading/>
+            }
             <div className="max-w-2xl px-4 py-4 mx-auto lg:py-4">
                 <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
                     {isEditForm ? 'Edit User' : 'Add User'}

@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import 'react-quill/dist/quill.snow.css';
 import axios from '../../../config/axiosConfig';
 import { useParams, useNavigate } from 'react-router-dom';
+import Loading from '../../Components/Loading/Loading';
 
 function FormBook() {
 	const [genres, setGenres] = useState([]);
@@ -15,6 +16,7 @@ function FormBook() {
 	const [imageFile, setImageFile] = useState(null);
 	const [pdfFile, setPdfFile] = useState(null);
 	const [currentImageUrl, setCurrentImageUrl] = useState('');
+	const [processing, setProcessing] = useState(false);
 	const { id } = useParams();
 	const isEditForm = Boolean(id);
 	const navigate = useNavigate();
@@ -79,6 +81,7 @@ function FormBook() {
 			author: Yup.string().required('Tác giả phải được chọn'),
 		}),
 		onSubmit: async (values, { setSubmitting }) => {
+			setProcessing(true);
 			try {
 				const requestData = {
 					name: values.name,
@@ -93,13 +96,11 @@ function FormBook() {
 				console.log(requestData);
 				let response;
 				if (isEditForm) {
-					response = await axios.put(`/book/${id}`, requestData,
-					{
+					response = await axios.put(`/book/${id}`, requestData, {
 						headers: {
 							'Content-Type': 'multipart/form-data',
 						},
-					}
-					);
+					});
 				} else {
 					response = await axios.post('/book', requestData, {
 						headers: {
@@ -112,6 +113,7 @@ function FormBook() {
 					const message = isEditForm
 						? 'Sách đã được cập nhật thành công'
 						: 'Sách đã được thêm thành công';
+					setProcessing(false);
 					toast.success(message);
 					navigate('/admin/books');
 				} else {
@@ -126,7 +128,6 @@ function FormBook() {
 
 	const handleImageChange = (e) => {
 		setImageFile(e.target.files[0]);
-		
 	};
 	const handlePdfFileChange = (e) => {
 		const file = e.target.files[0];
@@ -135,6 +136,9 @@ function FormBook() {
 
 	return (
 		<section className="bg-white dark:bg-gray-900">
+			{processing && (
+				<Loading/>
+			)}
 			<div className="max-w-2xl px-4 py-4 mx-auto lg:py-4">
 				<h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
 					{isEditForm ? 'Cập nhật sách' : 'Thêm sách'}
@@ -202,35 +206,35 @@ function FormBook() {
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 							/>
 						</div>
-						<div className='flex '>
+						<div className="flex ">
 							{imageFile && (
-							<div className="mb-4 mr-1">
-								<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-									Xem trước ảnh
-								</label>
-								<img
-									src={URL.createObjectURL(imageFile)}
-									alt="Preview"
-									className="w-52 h-52 rounded-lg"
-								/>
-							</div>
-						)}
-						<div>
-							{isEditForm && currentImageUrl && (
-								<div className="mb-4">
+								<div className="mb-4 mr-1">
 									<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-										Ảnh hiện tại
+										Xem trước ảnh
 									</label>
 									<img
-										src={currentImageUrl}
-										alt="Current Image"
+										src={URL.createObjectURL(imageFile)}
+										alt="Preview"
 										className="w-52 h-52 rounded-lg"
 									/>
 								</div>
 							)}
+							<div>
+								{isEditForm && currentImageUrl && (
+									<div className="mb-4">
+										<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+											Ảnh hiện tại
+										</label>
+										<img
+											src={currentImageUrl}
+											alt="Current Image"
+											className="w-52 h-52 rounded-lg"
+										/>
+									</div>
+								)}
+							</div>
 						</div>
-						</div>
-						
+
 						<div className="w-full">
 							<label
 								htmlFor="publishedDate"

@@ -5,7 +5,7 @@ function DefaultLayout({ children }) {
 	return (
 		<div className="flex flex-col ">
 			<Navbar />
-			<div className="container my-12 mx-auto px-4 md:px-12">
+			<div className="container flex justify-center items-center my-12 mx-auto px-4 md:px-12">
 				{children}
 			</div>
 			<div className="shadow mt-4">

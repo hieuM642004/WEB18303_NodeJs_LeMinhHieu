@@ -6,164 +6,182 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import ConfirmationModal from '../../Components/ConfirmationModal/ConfirmationModal';
-
+import { io } from 'socket.io-client';
 function ReadComments() {
-    const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
-    const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+	const [comments, setComments] = useState([]);
+	const [commentsWithUsername, setCommentsWithUsername] = useState([]);
+	const [users, setUsers] = useState([]);
+	const [books, setBooks] = useState([]);
+	const [isDataReceived, setIsDataReceived] = useState(false);
+	const [selectedComment, setSelectedComment] = useState(null);
+	const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
+	var socket = io.connect('http://localhost:3001');
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				socket.on('All comments', (commentsData) => {
+					setComments(commentsData);
+					setIsDataReceived(true); 
+				});
+				const responseUser = await axios.get('/user');
+				setUsers(responseUser.data);
+				const responseBook = await axios.get('/book');
+				setBooks(responseBook.data.book);
+			} catch (error) {
+				console.error('Error fetching user data:', error);
+			}
+		}
+		fetchData();
+	}, []);
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const res = await axios.get('/user');
-                setUsers(res.data);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        }
+	useEffect(() => {
+		if (isDataReceived) {
+			const commentsDataWithUsernameAndBook = comments.map((comment) => {
+				const user = users.find((user) => user._id === comment.userId);
+				const book = books.find((book) => book._id === comment.bookId);
+				const username = user ? user.username : 'Unknown';
+				const bookName = book ? book.name : 'Unknown';
+				return { ...comment, username, bookName };
+			});
+			setCommentsWithUsername(commentsDataWithUsernameAndBook);
+		}
+	}, [comments, users, books, isDataReceived]);
 
-        fetchData();
-    }, [isConfirmationOpen]);
+	const handleDelete = (comment) => {
+		setSelectedComment(comment);
+		setIsConfirmationOpen(true);
+	};
 
-    const handleDelete = (user) => {
-        setSelectedUser(user);
-        setIsConfirmationOpen(true);
-    };
+	const handleCloseConfirmation = () => {
+		setSelectedComment(null);
+		setIsConfirmationOpen(false);
+	};
 
-    const handleCloseConfirmation = () => {
-        setSelectedUser(null);
-        setIsConfirmationOpen(false);
-    };
+	const handleConfirmDelete = async () => {
+		if (!selectedComment) return;
 
-    const handleConfirmDelete = async () => {
-        if (!selectedUser) return;
+		try {
+			socket.emit('Delete_comment', { commentId: selectedComment._id });
+			toast.success('Comment deleted successfully');
+			handleCloseConfirmation();
+			setCommentsWithUsername((prevComments) =>
+				prevComments.filter(
+					(comment) => comment._id !== selectedComment._id,
+				),
+			);
+		} catch (error) {
+			console.error('Error deleting comment:', error);
+		}
+	};
 
-        try {
-            await axios.delete(`/user/${selectedUser._id}`);
-            toast.success('User deleted successfully');
+	return (
+		<section>
+			<div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+				<table className="w-full text-left table-auto min-w-max">
+					<thead>
+						<tr>
+							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+									#
+								</p>
+							</th>
+							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+									Tên người dùng
+								</p>
+							</th>
+							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+									Bài viết
+								</p>
+							</th>
+							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+									Nội dung
+								</p>
+							</th>
+							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+									Đánh giá
+								</p>
+							</th>
 
-            handleCloseConfirmation();
-        } catch (error) {
-            console.error('Error deleting user:', error);
-        }
-    };
+							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+									Hành động
+								</p>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{commentsWithUsername.map((comment, index) => (
+							<tr key={index}>
+								<td className="p-4 border-b border-blue-gray-50">
+									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+										{index + 1}
+									</p>
+								</td>
+								<td className="p-4 border-b border-blue-gray-50">
+									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+										{comment && comment.username}
+									</p>
+								</td>
 
-    return (
-        <section>
-            <Link to={'/admin/user/add-user'}>
-                <button
-                    type="button"
-                    className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-                >
-                    Add User
-                </button>
-            </Link>
-            <div className="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
-                <table className="w-full text-left table-auto min-w-max">
-                    <thead>
-                        <tr>
-                            <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-                                <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    #
-                                </p>
-                            </th>
-                            <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-                                <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                   Tên
-                                </p>
-                            </th>
-                            <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-                                <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                   Avatar
-                                </p>
-                            </th>
-                            <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-                                <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Email
-                                </p>
-                            </th>
-                            <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-                                <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Vai trò
-                                </p>
-                            </th>
-                            <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-                                <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Đã theo dõi
-                                </p>
-                            </th>
-                            <th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-                                <p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
-                                    Hành động
-                                </p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user, index) => (
-                            <tr key={index}>
-                                <td className="p-4 border-b border-blue-gray-50">
-                                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {index + 1}
-                                    </p>
-                                </td>
-                                <td className="p-4 border-b border-blue-gray-50">
-                                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {user&& user.username}
-                                    </p>
-                                </td>
-                                <td className="p-4 border-b border-blue-gray-50">
-                                   <img src= {user&& user.avatar} alt=""  className='w-10 h-10 rounded-full'/>
-                                       
-                                   
-                                </td>
-                                <td className="p-4 border-b border-blue-gray-50">
-                                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {user&& user.email}
-                                    </p>
-                                </td>
-                                <td className="p-4 border-b border-blue-gray-50">
-                                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {user&& user.admin ?"Admin":"User"}
-                                    </p>
-                                </td>
-                                <td className="p-4 border-b border-blue-gray-50">
-                                    <p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        {user&& user.hasFollow.length}
-                                    </p>
-                                </td>
-                                <td className="p-4 border-b border-blue-gray-50">
-                                    <Link to={`/admin/user/edit-user/${user._id}`}>
-                                        <button
-                                            type="button"
-                                            className="text-white bg-blue-700 text-xs font-medium hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg px-2 py-2 me-1 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                        >
-                                            <FontAwesomeIcon icon={faPenToSquare} />
-                                        </button>
-                                    </Link>
-                                    <button
-                                        onClick={() => handleDelete(user)}
-                                        className="text-white bg-red-700 text-xs font-medium hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg px-2 py-2 me-1 mb-2"
-                                    >
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
+								<td className="p-4 border-b border-blue-gray-50">
+									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+										{comment && comment.bookName}
+									</p>
+								</td>
+								<td className="p-4 border-b border-blue-gray-50">
+									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+										{comment && comment.text}
+									</p>
+								</td>
+								<td className="p-4 border-b border-blue-gray-50">
+									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+										<div className="flex ">
+											{[...Array(5)].map((_, index) => (
+												<svg
+													key={index}
+													className={`w-5 h-5   ${index < comment.rating ? 'text-yellow-300' : 'text-gray-300'}  me-1  `}
+													aria-hidden="true"
+													xmlns="http://www.w3.org/2000/svg"
+													fill="currentColor"
+													viewBox="0 0 22 20"
+												>
+													<path
+														className="cursor-pointer "
+														d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+													/>
+												</svg>
+											))}
+										</div>
+									</p>
+								</td>
+								<td className="p-4 border-b border-blue-gray-50">
+									<button
+										onClick={() => handleDelete(comment)}
+										className="text-white bg-red-700 text-xs font-medium hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg px-2 py-2 me-1 mb-2"
+									>
+										<FontAwesomeIcon icon={faTrash} />
+									</button>
 
-                                    <ConfirmationModal
-                                        isOpen={isConfirmationOpen}
-                                        onClose={handleCloseConfirmation}
-                                        onConfirm={handleConfirmDelete}
-                                        title="Confirm Delete User"
-                                        content={`Are you sure you want to delete the user "${selectedUser?.username}"?`}
-                                    />
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <ToastContainer />
-        </section>
-    );
+									<ConfirmationModal
+										isOpen={isConfirmationOpen}
+										onClose={handleCloseConfirmation}
+										onConfirm={handleConfirmDelete}
+										title="Confirm Delete Comment"
+										content={`Are you sure you want to delete the comment "${selectedComment && selectedComment.username}"?`}
+									/>
+								</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+			<ToastContainer />
+		</section>
+	);
 }
 
 export default ReadComments;

@@ -146,7 +146,7 @@ function ReadBooks() {
 					className="w-full text-left table-auto min-w-max"
 					ref={tableRef}
 				>
-					<thead>
+					<thead >
 						<tr>
 							<th className="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
 								<p className="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
@@ -239,14 +239,18 @@ function ReadBooks() {
 									</p>
 								</td>
 								<td className="p-4 border-b border-blue-gray-50">
-									<p className="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-										{book.content.length > 50
-											? `${book.content.substring(
-													0,
-													50,
-												)}...`
-											: book.content}
-									</p>
+								<p
+											className="text-balance mx-auto font-sans text-base antialiased font-light leading-relaxed text-inherit"
+											dangerouslySetInnerHTML={{
+												__html:
+													book.content.length > 100
+														? book.content.substring(
+																0,
+																100,
+															) + '...'
+														: book.content,
+											}}
+										></p>
 								</td>
 								<td className="p-4 border-b border-blue-gray-50">
 									<a

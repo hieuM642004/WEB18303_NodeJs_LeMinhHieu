@@ -6,13 +6,12 @@ const {
 } = require("../middleware/verifyToken");
 
 const router = require("express").Router();
-//GET ALL USERS
-router.get("/",userController.getAllUsers);
-router.get("/:id",userController.getAUsers); 
-router.post("/:id",userController.addFollow); 
-router.put("/:id",userController.editUser); 
-router.delete("/:id/unfollow",userController.unFollow); 
-//DELETE USER
+
+router.get("/", userController.getAllUsers);
+router.get("/:id", userController.getAUsers);
+router.post("/:id", userController.addFollow);
+router.put("/:id", userController.editUser);
+router.delete("/:id/unfollow", userController.unFollow);
 router.delete("/:id", userController.deleteUser);
 
 module.exports = router;

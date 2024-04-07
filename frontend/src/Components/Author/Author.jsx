@@ -89,8 +89,8 @@ function Author() {
 										Thông tin
 									</span>
 									<ul>
-										<li>Năm sinh: {author.year}</li>
-										<li> {author.description}</li>
+										<li className='text-balance'>Năm sinh: {author.year}</li>
+										<li className='text-balance'> {author.description}</li>
 									</ul>
 								</div>
 							</div>
@@ -103,13 +103,13 @@ function Author() {
 										{author.name}
 									</span>
 								</h2>
-								<div className="grid grid-cols-3 gap-3">
+								<div className="grid grid-cols-3 gap-4">
 									{author.books.map((book, index) => (
 										<div
 											key={index}
 											className="relative  flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-72 "
 										>
-											<div className="p-6 ">
+											<div className="p-5 ">
 												<h5 className="block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
 													{book.name}
 												</h5>

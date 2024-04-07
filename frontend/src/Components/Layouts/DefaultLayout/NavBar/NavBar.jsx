@@ -5,7 +5,7 @@ import { faCrown, faUser } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../../../assets/img/open-book.png';
 import SearchBooks from './Search/Search';
 import handleLogout from '../../../Logout/Logout';
-import Notification from './Notification/Notification';
+
 
 function Navbar() {
 	const [user, setUser] = useState();
@@ -27,7 +27,6 @@ function Navbar() {
 					</span>
 				</Link>
 				<div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse ">
-				<Notification/>
 					<SearchBooks />
 					{user ? (
 						<>
@@ -41,14 +40,22 @@ function Navbar() {
 							>
 								<span className="sr-only">Open user menu</span>
 								<span className="relative inline-block">
-    <img src={
-										user[2] ||
-										'https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg'
-									} className="object-cover w-10 h-10 rounded-full "/>
-								{user[4]?<FontAwesomeIcon className='absolute  top-0 right-0 w-4 h-4 transform rotate-45 text-yellow-300' icon={faCrown}/> : ''}	
-
-</span>
-							
+									<img
+										src={
+											user[2] ||
+											'https://i.pinimg.com/736x/0d/64/98/0d64989794b1a4c9d89bff571d3d5842.jpg'
+										}
+										className="object-cover w-10 h-10 rounded-full "
+									/>
+									{user[4] ? (
+										<FontAwesomeIcon
+											className="absolute  top-0 right-0 w-4 h-4 transform rotate-45 text-yellow-300"
+											icon={faCrown}
+										/>
+									) : (
+										''
+									)}
+								</span>
 							</button>
 							{/* Dropdown menu */}
 							<div

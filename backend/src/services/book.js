@@ -93,11 +93,7 @@ class bookService {
     try {
       let query = {};
       let page = parseInt(req.query.page) || 1;
-      let limit = parseInt(req.query.limit) || 10;
-
-      if (req.query.genreId) {
-        query = { genres: { $in: [req.query.genreId] } };
-      }
+      let limit = parseInt(req.query.limit) || 6;
 
       if (req.query.search) {
         query.name = { $regex: new RegExp(req.query.search, "i") };

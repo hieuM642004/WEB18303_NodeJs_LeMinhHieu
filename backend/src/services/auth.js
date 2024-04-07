@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 let refreshTokens = [];
 const path = require("path");
 const { google } = require("googleapis");
@@ -27,32 +26,33 @@ class authService {
           return res.status(400).json({ message: "Upload failed", error: err });
         }
 
-        if (!req.file) {
-          return res.status(400).json({ message: "No avatar uploaded" });
+        let avatarUrl = null;
+
+        if (req.file) {
+          const avatarFile = req.file;
+          const avatarMetadata = {
+            name: avatarFile.filename,
+            parents: ["1TdIAHWTpH1eSejDLcJAF5nD65v_NQ38V"],
+          };
+          const avatarMedia = {
+            mimeType: avatarFile.mimetype,
+            body: fs.createReadStream(avatarFile.path),
+          };
+          const avatarResponse = await drive.files.create({
+            resource: avatarMetadata,
+            media: avatarMedia,
+            fields: "id",
+          });
+          const avatarId = avatarResponse.data.id;
+
+          avatarUrl = `https://drive.google.com/thumbnail?id=${avatarId}`;
+          fs.unlinkSync(avatarFile.path); // Di chuyển lệnh xóa vào đây
         }
-
-        const avatarFile = req.file;
-        const avatarMetadata = {
-          name: avatarFile.filename,
-          parents: ["1TdIAHWTpH1eSejDLcJAF5nD65v_NQ38V"],
-        };
-        const avatarMedia = {
-          mimeType: avatarFile.mimetype,
-          body: fs.createReadStream(avatarFile.path),
-        };
-        const avatarResponse = await drive.files.create({
-          resource: avatarMetadata,
-          media: avatarMedia,
-          fields: "id",
-        });
-        const avatarId = avatarResponse.data.id;
-
-        const avatarUrl = `https://drive.google.com/thumbnail?id=${avatarId}`;
 
         const salt = await bcrypt.genSalt(10);
         const hashed = await bcrypt.hash(req.body.password, salt);
 
-        const newUser = await new User({
+        const newUser = new User({
           username: req.body.username,
           email: req.body.email,
           password: hashed,
@@ -61,21 +61,20 @@ class authService {
 
         const user = await newUser.save();
 
-        fs.unlinkSync(avatarFile.path);
-
         res.status(200).json(user);
       });
     } catch (err) {
       res.status(500).json(err);
     }
   }
+
   static generateAccessToken(user) {
     return jwt.sign(
       {
         id: user.id,
         isAdmin: user.isAdmin,
       },
-      "Jw5Zm3Kx9LpR",
+      process.env.JWT_ACCESS_KEY,
       { expiresIn: "10d" }
     );
   }
@@ -86,7 +85,7 @@ class authService {
         id: user.id,
         isAdmin: user.isAdmin,
       },
-      "S4dEh9Gc6FqW",
+      process.env.JWT_REFRESH_KEY,
       { expiresIn: "365d" }
     );
   }
@@ -134,7 +133,7 @@ class authService {
     if (!refreshTokens.includes(refreshToken)) {
       return res.status(403).json("Refresh token is not valid");
     }
-    jwt.verify(refreshToken, "S4dEh9Gc6FqW", (err, user) => {
+    jwt.verify(refreshToken, process.env.JWT_REFRESH_KEY, (err, user) => {
       if (err) {
         console.log(err);
       }

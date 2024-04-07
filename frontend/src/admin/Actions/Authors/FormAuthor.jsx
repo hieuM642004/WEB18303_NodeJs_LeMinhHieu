@@ -43,9 +43,10 @@ function FormAuthor() {
 		validationSchema: Yup.object({
 			name: Yup.string().required('Tên không được trống'),
 			image: Yup.string(),
-			year: Yup.number()
-				.typeError('Phải là một số')
-				.positive('Năm sinh phải là một số dương'),
+			year: Yup.date()
+			.max(new Date(), 'Năm sinh phải trước ngày hiện tại')
+			.nullable()
+			.required('Năm sinh không được trống'),
 			description: Yup.string(),
 		}),
 		onSubmit: async (values, { setSubmitting }) => {
@@ -146,13 +147,16 @@ function FormAuthor() {
 								Năm sinh
 							</label>
 							<input
-								type="text"
+								type="date"
 								name="year"
 								id="year"
 								className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
 								value={formik.values.year}
 								onChange={formik.handleChange}
-								placeholder="Nhập năm sinh"
+								onBlur={formik.handleBlur}
+								placeholder="Chọn năm sinh"
+								max={new Date().toISOString().split('T')[0]}
+								
 							/>
 							{formik.errors.year && (
 								<p className="text-red-600 text-sm">

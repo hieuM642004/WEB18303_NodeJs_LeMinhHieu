@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom';
 import CardsBooks from '../CardsBooks/CarsBooks';
 import Filter from '../Filter/Filter';
 
@@ -18,32 +18,32 @@ const HomePage = () => {
 								</div>
 								<div className="lg:max-w-xl lg:pr-5 relative z-40">
 									<p className="flex text-sm uppercase text-g1  ">
-										About Us
+										Premium account
 									</p>
 									<h2 className="mb-6 max-w-lg text-5xl font-light leading-snug tracking-tight text-g1 sm:text-7xl sm:leading-snug">
-										We make you look
+										Đăng kí ngay
 										<span className="my-1 inline-block border-b-8 border-g4 bg-white px-4 font-bold text-g4 animate__animated animate__flash">
-											different
+											giảm 20%
 										</span>
 									</h2>
 									<p className="text-base text-gray-700">
-										Sed ut perspiciatis unde omnis iste
-										natus error sit voluptatem accusantium
-										doloremque it.
+										Trải nghiệm sự khác biệt của Premium account
 									</p>
 									<div className="mt-10 flex flex-col items-center md:flex-row">
+									<Link to="/pricing">
+											<a
+												
+												className="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-gray-900 px-6 font-medium tracking-wide text-white shadow-md transition  focus:outline-none md:mr-4 md:mb-0 md:w-auto"
+											>
+												Đăng kí
+											</a>
+									</Link>
 										<a
-											href="/"
-											className="mb-3 inline-flex h-12 w-full items-center justify-center rounded bg-green-600 px-6 font-medium tracking-wide text-white shadow-md transition hover:bg-blue-800 focus:outline-none md:mr-4 md:mb-0 md:w-auto"
-										>
-											View More
-										</a>
-										<a
-											href="/"
+											
 											aria-label=""
 											className="group inline-flex items-center font-semibold text-g1"
 										>
-											Watch how it works
+											
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
 												className="ml-4 h-6 w-6 transition-transform group-hover:translate-x-2"

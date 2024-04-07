@@ -34,4 +34,43 @@
   },
   "name": "Truyện tranh",
   "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660b6280eadae3d1c2c45157"
+  },
+  "name": "Hài kịch",
+  "createdAt": {
+    "$date": "2024-04-02T01:42:24.518Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T01:42:24.518Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660b6292eadae3d1c2c4515b"
+  },
+  "name": "Ngụ ngôn",
+  "createdAt": {
+    "$date": "2024-04-02T01:42:42.069Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T01:42:42.069Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "660b62b1eadae3d1c2c4515d"
+  },
+  "name": "Tình cảm",
+  "createdAt": {
+    "$date": "2024-04-02T01:43:13.592Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-02T01:43:13.592Z"
+  },
+  "__v": 0
 }]

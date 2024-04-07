@@ -1,42 +1,138 @@
 [{
   "_id": {
-    "$oid": "6606e4436d08d01b64ff4b29"
+    "$oid": "661294b80bdae532190ddcbe"
   },
   "userId": {
-    "$oid": "65e32900526e1fadbdc3b96b"
+    "$oid": "661294600bdae532190ddace"
   },
   "bookId": {
-    "$oid": "66002c3b00bb3a7c9b466768"
+    "$oid": "66128eb50bdae532190dda13"
   },
-  "text": " yoyo",
-  "rating": 2,
-  "edited": true,
+  "text": " hay quá",
+  "rating": 5,
+  "edited": false,
+  "parentCommentId": null,
+  "replies": [],
   "createdAt": {
-    "$date": "2024-03-29T15:54:43.067Z"
+    "$date": "2024-04-07T12:42:32.301Z"
   },
   "updatedAt": {
-    "$date": "2024-03-30T01:41:09.423Z"
+    "$date": "2024-04-07T12:42:32.301Z"
   },
   "__v": 0
 },
 {
   "_id": {
-    "$oid": "6607c5955c45185ae8e225af"
+    "$oid": "661294de0bdae532190ddf5e"
   },
   "userId": {
-    "$oid": "65e32900526e1fadbdc3b96b"
+    "$oid": "661294600bdae532190ddace"
   },
   "bookId": {
-    "$oid": "660783ea3f7b85ad9e755a85"
+    "$oid": "66128f420bdae532190dda1d"
   },
-  "text": " dfdfdf",
-  "rating": 5,
-  "edited": true,
+  "text": " Tạm",
+  "rating": 4,
+  "edited": false,
+  "parentCommentId": null,
+  "replies": [],
   "createdAt": {
-    "$date": "2024-03-30T07:56:05.645Z"
+    "$date": "2024-04-07T12:43:10.601Z"
   },
   "updatedAt": {
-    "$date": "2024-03-30T07:56:13.496Z"
+    "$date": "2024-04-07T12:43:10.601Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661295170bdae532190de234"
+  },
+  "userId": {
+    "$oid": "661294600bdae532190ddace"
+  },
+  "bookId": {
+    "$oid": "66128fcb0bdae532190dda27"
+  },
+  "text": " Tạm.",
+  "rating": 3,
+  "edited": false,
+  "parentCommentId": null,
+  "replies": [],
+  "createdAt": {
+    "$date": "2024-04-07T12:44:07.660Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-07T12:44:07.660Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661295630bdae532190de48a"
+  },
+  "userId": {
+    "$oid": "6612954c0bdae532190de270"
+  },
+  "bookId": {
+    "$oid": "66128eb50bdae532190dda13"
+  },
+  "text": " Ổn",
+  "rating": 4,
+  "edited": false,
+  "parentCommentId": null,
+  "replies": [],
+  "createdAt": {
+    "$date": "2024-04-07T12:45:23.923Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-07T12:45:23.923Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661295760bdae532190de5e1"
+  },
+  "userId": {
+    "$oid": "6612954c0bdae532190de270"
+  },
+  "bookId": {
+    "$oid": "66128f420bdae532190dda1d"
+  },
+  "text": " Cảm xúc",
+  "rating": 5,
+  "edited": false,
+  "parentCommentId": null,
+  "replies": [],
+  "createdAt": {
+    "$date": "2024-04-07T12:45:42.490Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-07T12:45:42.490Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "661295960bdae532190de6f9"
+  },
+  "userId": {
+    "$oid": "6612954c0bdae532190de270"
+  },
+  "bookId": {
+    "$oid": "661290870bdae532190dda40"
+  },
+  "text": " Hay quá 100 điểm",
+  "rating": 5,
+  "edited": false,
+  "parentCommentId": null,
+  "replies": [],
+  "createdAt": {
+    "$date": "2024-04-07T12:46:14.537Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-07T12:46:14.537Z"
   },
   "__v": 0
 }]

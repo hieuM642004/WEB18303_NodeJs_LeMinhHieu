@@ -4,28 +4,23 @@ import axios from '../../config/axiosConfig';
 import CardsBooks from '../CardsBooks/CarsBooks';
 
 function Genres() {
-	const { id } = useParams();
+	const { id: genreId } = useParams();
 	const [genre, setGenre] = useState({});
-	const [books, setBooks] = useState([]);
 
 	useEffect(() => {
 		const fetchGenresAndBooks = async () => {
 			try {
-				const genreResponse = await axios.get(`/genres/${id}`);
+				const genreResponse = await axios.get(`/genres/${genreId}`);
 				setGenre(genreResponse.data);
-				const booksResponse = await axios.get('/book', {
-					params: { genreId: id },
-				});
-				setBooks(booksResponse.data.book);
 			} catch (error) {
 				console.log(error);
 			}
 		};
 		fetchGenresAndBooks();
-	}, [id]);
+	}, [genreId]);
 
 	return (
-		<section>
+		<section className='w-full'>
 			<h2 className="flex flex-row flex-nowrap items-center my-8">
 				<span
 					className="flex-grow block border-t border-black"
@@ -41,7 +36,7 @@ function Genres() {
 					role="presentation"
 				></span>
 			</h2>
-			<CardsBooks books={books} />
+			<CardsBooks genreId={genreId} />
 		</section>
 	);
 }

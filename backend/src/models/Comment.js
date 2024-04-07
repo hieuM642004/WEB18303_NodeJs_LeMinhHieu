@@ -16,10 +16,21 @@ const commentSchema = new mongoose.Schema(
     rating: {
       type: Number,
     },
-    edited:{
-      type:Boolean,
-      default: false
-    }
+    edited: {
+      type: Boolean,
+      default: false,
+    },
+    parentCommentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+      default: null,
+    },
+    replies: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
   },
   { timestamps: true }
 );
