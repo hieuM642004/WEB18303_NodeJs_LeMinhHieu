@@ -56,7 +56,7 @@ function CardsBooks({ genreId }) {
 			try {
 				const idUser = getUsersFromLocalStorage()[0];
 				const resUser = await axios.get(`/user/${idUser}`);
-				console.log(resUser.data);
+			
 				if (resUser.data.premium === true) {
 					setPremiumUser(true);
 				}

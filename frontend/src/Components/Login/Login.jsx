@@ -35,11 +35,7 @@ const Login = () => {
 					]),
 				);
 				document.cookie = `token=${data.accessToken};max-age=${data.expiresIn};path=/`;
-				if (data.admin) {
-					navigate('/admin/dashboard');
-				} else {
-					navigate('/');
-				}
+				navigate('/');
 				window.location.reload();
 			} else {
 				console.error('Login failure!');

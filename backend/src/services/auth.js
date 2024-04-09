@@ -72,7 +72,7 @@ class authService {
     return jwt.sign(
       {
         id: user.id,
-        isAdmin: user.isAdmin,
+        isAdmin: user.admin,
       },
       process.env.JWT_ACCESS_KEY,
       { expiresIn: "10d" }
@@ -83,7 +83,7 @@ class authService {
     return jwt.sign(
       {
         id: user.id,
-        isAdmin: user.isAdmin,
+        isAdmin: user.admin,
       },
       process.env.JWT_REFRESH_KEY,
       { expiresIn: "365d" }
